@@ -1,0 +1,164 @@
+<html>
+<body style="margin:0px;padding:0px;overflow:hidden;border-style:None;background-image:url(images/bk.gif)">
+<style>
+a, a *
+{
+   text-decoration:none;
+}
+img
+{
+    border-style:none;
+}
+
+body *
+{
+    font-family:arial;
+    font-size:12px;
+}
+
+#mainTable
+{
+    border-bottom-style:solid;
+    border-bottom-color:#6B92E7;
+    border-bottom-width:1px;
+    width:100%;
+    height:100%;
+    vertical-align:middle;
+}
+
+#addressBox
+{
+background-position:right;
+background-repeat:no-repeat;
+position:relative;
+top:0px;left:0px;
+height:20px;
+margin:0px;
+padding:0 0 0 0;
+border-bottom-style:solid;
+border-left-style:solid;
+border-top-style:solid;
+border-right-style:none;
+border-color:#6B92E7;
+border-width:1px;
+}
+
+#iconColumn
+{
+    width:20px;
+    padding-right:10px;
+    padding-left:10px
+}
+
+#addressColumn
+{
+    width:2px;
+    padding-right:5px;
+}
+
+#inputColumn
+{
+    vertical-align:middle;
+    margin:0px;
+    padding:0px;
+}
+
+#addressBox
+{
+    width:100%;
+}
+
+#goColumn
+{
+    width:24px;
+    vertical-align:middle;
+}
+
+#buttonsColumn
+{
+    width:100px;
+    padding-left:10px;
+}
+
+#buttonsColumn img
+{
+    vertical-align:middle;
+}
+
+#closeColumn
+{
+    width:5px;
+    padding-right:5px;
+}
+
+#closeColumn a
+{
+    float:right;
+}
+
+#settings
+{
+    target-new: tab;
+}
+
+#bfbuttons {
+    width:50px;
+    padding-left:8px;
+}
+#bfbuttons img {
+    vertical-align:middle;
+}
+
+
+</style>
+
+<table id="maintable" cellspacing=0 cellpadding=0>
+<tr>
+<td id="iconColumn">
+    <img src="images/chromeba.png" />
+</td>
+<!--
+<td id="bfbuttons">
+    <a><img id="back" src="images/noback.png" /></a>
+    <a><img id="forward" src="images/nofwd.png" /></a>
+</td>
+-->
+<td id="addressColumn" >
+Address:
+</td>
+<td id="inputColumn" >
+    <input id="addressBox" type="text" spellcheck="false" />
+</td>
+<td id="goColumn">
+    <a id="goButton" href="#">
+        <img src="images/go.png" />
+    </a>
+</td>
+<td id="buttonsColumn">
+    <a id="settings" href="#" target="ietaboptions" >
+        <img id="tipIETabOptions" src="images/settings16.png" title="Change Auto URLs or other IE Tab settings"/>
+    </a>
+    <a id="bookmark" href="#">
+        <img id="tipBookmarkPage" src="images/favorite.png" title="Bookmark this page in the 'IE Tab' folder" />
+    </a>
+    <a href="http://www.ietab.net/ie-tab-documentation" target="ietabdocs" style="target-new:tab">
+        <img id="tipDocs" src="images/help.png" title="Learn more about IE Tab" />
+    </a>
+</td>
+<td id="searchColumn" style="width:180px;display:none">
+	<input id="searchBox" type="text" spellcheck="false" style="vertical-align:middle;width:150px" />
+	<a id="tipSearch" href="#;" title="Search the web">
+		<img src="images/search-button.png" style="vertical-align:middle" />
+	</a>
+</td>
+<td id="closeColumn">
+    <a id="closeBtn" href="#" title="Close IE Tab and open this page in Chrome">
+        <img id="tipClose" src="images/close.gif" />
+    </a>
+</td>
+</tr>
+</table>
+<script src="js/i18n.js"></script>
+<script src="js/topui.js"></script>
+</body>
+</html>

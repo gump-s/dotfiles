@@ -1,0 +1,18 @@
+2016/07/29-21:54:01.137 1179 Reusing MANIFEST /home/scott/.config/chromium/Default/Extension State/MANIFEST-000001
+2016/07/29-21:54:01.137 1179 Recovering log #16
+2016/07/29-21:54:01.423 1179 Reusing old log /home/scott/.config/chromium/Default/Extension State/000016.log 
+2016/07/30-11:47:29.113 1600 Level-0 table #20: started
+2016/07/30-11:47:29.176 1600 Level-0 table #20: 1921993 bytes OK
+2016/07/30-11:47:29.218 1600 Delete type=0 #16
+2016/07/30-11:47:29.228 1600 Compacting 4@0 + 1@1 files
+2016/07/30-11:47:29.393 1600 Generated table #21@0: 5 keys, 2939 bytes
+2016/07/30-11:47:29.393 1600 Compacted 4@0 + 1@1 files => 2939 bytes
+2016/07/30-11:47:29.426 1600 compacted to: files[ 0 1 1 0 0 0 0 ]
+2016/07/30-11:47:29.426 1600 Delete type=2 #14
+2016/07/30-11:47:29.426 1600 Delete type=2 #8
+2016/07/30-11:47:29.427 1600 Delete type=2 #20
+2016/07/30-11:47:29.427 1600 Delete type=2 #11
+2016/07/30-11:47:29.446 1600 Delete type=2 #17
+2016/07/30-18:52:50.886 1600 Level-0 table #23: started
+2016/07/30-18:52:50.945 1600 Level-0 table #23: 1923992 bytes OK
+2016/07/30-18:52:50.989 1600 Delete type=0 #19

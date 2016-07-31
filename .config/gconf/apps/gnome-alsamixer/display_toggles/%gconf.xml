@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="Realtek_ALC892-Loopback_Mixing" mtime="1468029027" type="bool" value="true"/>
+	<entry name="Realtek_ALC892-Input_Source" mtime="1468029027" type="bool" value="true"/>
+	<entry name="Realtek_ALC892-Auto-Mute_Mode" mtime="1468029026" type="bool" value="true"/>
+	<entry name="Realtek_ALC892-IEC958_Default_PCM" mtime="1468029026" type="bool" value="true"/>
+	<entry name="Realtek_ALC892-IEC958" mtime="1468029026" type="bool" value="true"/>
+</gconf>

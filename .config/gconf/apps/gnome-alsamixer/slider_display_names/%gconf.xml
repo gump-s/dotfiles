@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="Realtek_ALC892-Rear_Mic_Boost" mtime="1468029026" type="string">
+		<stringvalue>Rear Mic</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Rear_Mic" mtime="1468029026" type="string">
+		<stringvalue>Rear Mic</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Capture" mtime="1468029026" type="string">
+		<stringvalue>Capture</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Line_Boost" mtime="1468029026" type="string">
+		<stringvalue>Line Boo</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Line" mtime="1468029026" type="string">
+		<stringvalue>Line</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Side" mtime="1468029026" type="string">
+		<stringvalue>Side</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-LFE" mtime="1468029026" type="string">
+		<stringvalue>LFE</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Center" mtime="1468029026" type="string">
+		<stringvalue>Center</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Surround" mtime="1468029026" type="string">
+		<stringvalue>Surround</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Front_Mic_Boost" mtime="1468029026" type="string">
+		<stringvalue>Front Mi</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Front_Mic" mtime="1468029025" type="string">
+		<stringvalue>Front Mi</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Front" mtime="1468029025" type="string">
+		<stringvalue>Front</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-PCM" mtime="1468029025" type="string">
+		<stringvalue>PCM</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Headphone" mtime="1468029025" type="string">
+		<stringvalue>Headphon</stringvalue>
+	</entry>
+	<entry name="Realtek_ALC892-Master" mtime="1468029025" type="string">
+		<stringvalue>Master</stringvalue>
+	</entry>
+</gconf>

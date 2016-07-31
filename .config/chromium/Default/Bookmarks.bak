@@ -1,0 +1,130 @@
+{
+   "checksum": "3163dd71a72fb046b7b2ffb84b3cdfca",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "children": [ {
+               "date_added": "13109060207628690",
+               "id": "18",
+               "name": "thenewboston - Video Tutorials on Programming and More",
+               "sync_transaction_version": "1",
+               "type": "url",
+               "url": "https://thenewboston.com/"
+            } ],
+            "date_added": "13112657359194096",
+            "date_modified": "13112657359194096",
+            "id": "17",
+            "name": "Programming",
+            "sync_transaction_version": "1",
+            "type": "folder"
+         } ],
+         "date_added": "13112657306351077",
+         "date_modified": "0",
+         "id": "1",
+         "name": "Bookmarks bar",
+         "type": "folder"
+      },
+      "other": {
+         "children": [ {
+            "date_added": "12996832381428900",
+            "id": "6",
+            "name": "Easy FPGA Code Using Verilog",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://simplefpga.blogspot.com/"
+         }, {
+            "date_added": "13112657359191104",
+            "id": "7",
+            "name": "PickTheBrain | Motivation and Self Improvement",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://www.pickthebrain.com/blog/"
+         }, {
+            "date_added": "12986773476799425",
+            "id": "8",
+            "name": "Melodies Labs: RaspberryPi mouse and keyboard do not work after startx",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://iroylabs.blogspot.com/2012/06/raspberrypi-mouse-and-keyboard-does-not.html"
+         }, {
+            "date_added": "12997055871643437",
+            "id": "9",
+            "name": "awesomobile",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://awesomobile.com/"
+         }, {
+            "date_added": "12913874392000000",
+            "id": "10",
+            "name": "Homework Help from Cramster | Math, Algebra, Physics, Chemistry, Science, History, Accounting, English",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://www.cramster.com/"
+         }, {
+            "date_added": "13112657359191514",
+            "id": "11",
+            "name": "Docutek ERes - Course Reserves Page",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://copleylib.sandiego.edu/eres/coursepage.aspx?cid=1571&page=docs"
+         }, {
+            "date_added": "12929312379000000",
+            "id": "12",
+            "name": "Blackboard Learning System",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://pope.sandiego.edu/webct/urw/lc5116001.tp0/cobaltMainFrame.dowebct"
+         }, {
+            "date_added": "12906253771000000",
+            "id": "13",
+            "meta_info": {
+               "stars.flags": "6",
+               "stars.id": "ssc_41be75ef373a5c59",
+               "stars.imageData": "Cg5TNWdjX1ZuR2s3S2RFTRI7CjNodHRwczovL3MueWltZy5jb20vZGgvYXAvZGVmYXVsdC8xMzA5MDkveV8yMDBfYS5wbmcQoAEYoAEaYwpbaHR0cDovL3QzLmdzdGF0aWMuY29tL2ltYWdlcz9xPXRibjpBTmQ5R2NUWkRweVEwUzRqUUpvQmRMSFVnQi12Y3dpUzlkV3dxTVhPTG9aejdfd29PNjcwZFJvRBCgARigASIQCAEQoAEYoAFCBhIEkv9+/yjRiI7i9o3GAg==",
+               "stars.pageData": "Ig5KMnlaUndkZkF3eTZlTQ==",
+               "stars.type": "2"
+            },
+            "name": "Yahoo!",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://m.www.yahoo.com/"
+         }, {
+            "date_added": "12996832381421900",
+            "id": "14",
+            "name": "Coding Horror",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://www.codinghorror.com/blog/"
+         }, {
+            "date_added": "12975144169337800",
+            "id": "15",
+            "name": "runoffgroove.com",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://runoffgroove.com/"
+         }, {
+            "date_added": "13112657359194000",
+            "id": "16",
+            "name": "G11 Electronics | Early Philips Colour TV Receivers",
+            "sync_transaction_version": "1",
+            "type": "url",
+            "url": "http://www.philipstv.org.uk/blog/g11/g11-electronics/"
+         } ],
+         "date_added": "13112657306351082",
+         "date_modified": "13112657359194000",
+         "id": "2",
+         "name": "Other bookmarks",
+         "type": "folder"
+      },
+      "sync_transaction_version": "1",
+      "synced": {
+         "children": [  ],
+         "date_added": "13112657306351082",
+         "date_modified": "0",
+         "id": "3",
+         "name": "Mobile bookmarks",
+         "type": "folder"
+      }
+   },
+   "version": 1
+}
