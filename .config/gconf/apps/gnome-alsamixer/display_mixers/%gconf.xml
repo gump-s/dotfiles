@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<gconf>
-	<entry name="Nvidia_GPU_16_HDMI_DP" mtime="1468029035" type="bool" value="true"/>
-	<entry name="USB_Mixer" mtime="1468029035" type="bool" value="true"/>
-	<entry name="Realtek_ALC892" mtime="1468029035" type="bool" value="true"/>
-</gconf>
