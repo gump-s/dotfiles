@@ -1,0 +1,13 @@
+2016/07/29-21:54:00.888 1179 Reusing MANIFEST /home/scott/.config/chromium/Default/Local Extension Settings/bmnlcjabgnpnenekpadlanbbkooimhnj/MANIFEST-000001
+2016/07/29-21:54:00.888 1179 Recovering log #13
+2016/07/29-21:54:00.934 1179 Reusing old log /home/scott/.config/chromium/Default/Local Extension Settings/bmnlcjabgnpnenekpadlanbbkooimhnj/000013.log 
+2016/07/30-12:00:57.546 1600 Compacting 2@0 + 1@1 files
+2016/07/30-12:00:57.707 1600 Generated table #16@0: 18 keys, 650024 bytes
+2016/07/30-12:00:57.707 1600 Compacted 2@0 + 1@1 files => 650024 bytes
+2016/07/30-12:00:57.766 1600 compacted to: files[ 0 1 1 0 0 0 0 ]
+2016/07/30-12:00:57.766 1600 Delete type=2 #14
+2016/07/30-12:00:57.766 1600 Delete type=2 #8
+2016/07/30-12:00:57.766 1600 Delete type=2 #11
+2016/07/30-16:19:23.127 1600 Level-0 table #18: started
+2016/07/30-16:19:23.212 1600 Level-0 table #18: 1914862 bytes OK
+2016/07/30-16:19:23.254 1600 Delete type=0 #13
