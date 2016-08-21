@@ -1,6 +1,6 @@
 set nocompatible
 filetype off
-"Pathogen
+
 execute pathogen#infect()
 
 "Backspace Settings
@@ -9,8 +9,11 @@ set backspace=2
 "Change the leader to space
 let mapleader="\<space>"
 "Font, colorscheme, and gui options
+"Force 256 colors
+set t_Co=256
+set t_ut=
 colorscheme jellybeans
-"let g:jellybeans_use_lowcolor_black=0
+let g:jellybeans_use_lowcolor_black=0
 "colorscheme ir_black
 syntax enable
 set background=dark
@@ -23,8 +26,6 @@ set guioptions-=m  "remove menubar
 set guioptions-=T  "remove toolbar
 
 "Normal Mode Map
-"nnoremap <Tab> :bnext<CR>
-"nnoremap <S-Tab> :bprevious<CR>
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -32,12 +33,10 @@ nnoremap <C-H> <C-W><C-H>
 
 "Insert Mode Map
 inoremap jk <esc>
-"inoremap <esc> <nop>
 
 "Save Buffers for next sessioen
 exec 'set viminfo=%,' . &viminfo
 nmap <leader>w :w<CR>
-"imap <c-w> jk:w<CR>
 
 "Set tab formatting
 filetype plugin indent on
@@ -47,8 +46,8 @@ set shiftwidth=4
 set expandtab
 
 "Highlight Column 110 with dark gray
-set colorcolumn=130
-highlight ColorColumn ctermbg=darkgray
+"set colorcolumn=130
+"highlight ColorColumn ctermbg=darkgray
 
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>:<backspace>
@@ -67,7 +66,7 @@ set backupdir=./.backup,.,/tmp
 set directory=.,./.backup,/tmp
 
 "Setup the Ctags workspace
-set tags=./tags;../SOCShared/tags;
+set tags=./tags;
 
 "Seach Parameters
 set smartcase
@@ -89,6 +88,7 @@ nnoremap <leader>n :call NumberToggle()<cr>
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>ez :e ~/.zshrc<CR>
+nnoremap <leader>eb :e ~/.bashrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 "Update the tags file
@@ -104,7 +104,4 @@ set virtualedit=block
 let g:airline#extensions#whitespace#checks = ['trailing', 'long']
 set laststatus=2
 
-"Force 256 colors
-set t_Co=256
-
-set clipboard=unnamed
+set clipboard=unnamedplus
