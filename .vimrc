@@ -13,13 +13,13 @@ let mapleader="\<space>"
 set t_Co=256
 set t_ut=
 colorscheme jellybeans
-let g:jellybeans_use_lowcolor_black=0
-"colorscheme ir_black
 syntax enable
 set background=dark
-set guifont=Consolas:h10
 set number
 set relativenumber
+
+"Set GUI options
+set guifont=Consolas:h10
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 set guioptions-=m  "remove menubar

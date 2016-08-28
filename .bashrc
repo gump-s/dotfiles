@@ -28,8 +28,10 @@
 
 #export DISPLAY=:0
 #export TERM=xterm-256color
-export TERM=rxvt-unicode
+#export TERM=rxvt-unicode
+#export COLORTERM=rxvt-unicode
 export VISUAL="vim"
+export PATH=$PATH:~/bin
 
 # Shell Options
 #
@@ -121,6 +123,7 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
  alias ll='ls -l'                              # long list
  alias la='ls -A'                              # all but . and ..
  alias l='ls -CF'                              #
+ alias lla='ls -la'                              #
 
 # Umask
 #
