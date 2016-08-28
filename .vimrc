@@ -104,4 +104,8 @@ set virtualedit=block
 let g:airline#extensions#whitespace#checks = ['trailing', 'long']
 set laststatus=2
 
+"Set Clipboard
 set clipboard=unnamedplus
+
+"Remove all trailing whitespace by pressing F5
+nnoremap <leader>ds :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
