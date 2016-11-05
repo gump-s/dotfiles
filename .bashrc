@@ -73,7 +73,8 @@ shopt -s nocaseglob
 # History Options
 #
 # Don't put duplicate lines in the history.
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+#export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
+export HISTCONTROL=ignoreboth:erasedups
 #
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
@@ -87,9 +88,9 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 # Aliases
 #
 # Some people use a different file for aliases
-# if [ -f "${HOME}/.bash_aliases" ]; then
-#   source "${HOME}/.bash_aliases"
-# fi
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source "${HOME}/.bash_aliases"
+fi
 #
 # Some example alias instructions
 # If these are enabled they will be used instead of any instructions

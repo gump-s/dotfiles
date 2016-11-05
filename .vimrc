@@ -1,69 +1,120 @@
 set nocompatible
 filetype off
 
-execute pathogen#infect()
+"Pathogen
+"execute pathogen#infect()
+"Helptags
 
-"Backspace Settings
-set backspace=2
+if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
+    !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+endif
 
-"Change the leader to space
-let mapleader="\<space>"
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+Plugin 'Rip-Rip/clang_complete'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'cscope/plugin/cscope_maps'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+"To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+"System Options
+"{
+   "Change Directory for Swap File
+   set backupdir=./.backup/,.,~/tmp
+   set directory=.,./.backup/,~/tmp
+
+   "Save Buffers for next sessioen
+   "exec 'set viminfo=%,' . &viminfo
+
+   "Change the leader to space
+   let mapleader="\<space>"
+
+   "Backspace Settings
+   set backspace=2
+
+   "Clipboard
+   set clipboard=unnamed
+"}
+
+"Misc Key Remaps
+"{
+   "Insert Mode Map
+   inoremap jk <esc>
+
+   "Save with leader+w
+   nmap <leader>w :w<CR>
+
+   "Normal Mode Map
+   nnoremap <C-J> <C-W><C-J>
+   nnoremap <C-K> <C-W><C-K>
+   nnoremap <C-L> <C-W><C-L>
+   nnoremap <C-H> <C-W><C-H>
+
+   "This unsets the 'last search pattern' register by hitting return
+   nnoremap <CR> :noh<CR><CR>:<backspace>
+   "Disble the beep
+   set noeb vb t_vb=
+
+   "Virtual Edit Block
+   set virtualedit=block
+"}
+
 "Font, colorscheme, and gui options
-"Force 256 colors
-set t_Co=256
-set t_ut=
-colorscheme jellybeans
-syntax enable
-set background=dark
-set number
-set relativenumber
-
-"Set GUI options
-set guifont=Consolas:h10
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-set guioptions-=m  "remove menubar
-set guioptions-=T  "remove toolbar
-
-"Normal Mode Map
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-"Insert Mode Map
-inoremap jk <esc>
-
-"Save Buffers for next sessioen
-exec 'set viminfo=%,' . &viminfo
-nmap <leader>w :w<CR>
+"{
+   filetype plugin indent on    " required
+   syntax enable
+   color jellybeans
+   set t_ut=
+   set t_Co=256
+   "set background=dark
+   "set guifont=Consolas:h10
+   set number
+   set relativenumber
+"}
 
 "Set tab formatting
-filetype plugin indent on
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+"{
+   set tabstop=3
+   set softtabstop=3
+   set shiftwidth=3
+   set expandtab
+"}
 
-"Highlight Column 110 with dark gray
-"set colorcolumn=130
-"highlight ColorColumn ctermbg=darkgray
-
-"This unsets the 'last search pattern' register by hitting return
-nnoremap <CR> :noh<CR><CR>:<backspace>
 
 "CtrlP Options
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-if exists("g:ctrl_user_command")
-  unlet g:ctrlp_user_command
-endif
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
+"{
+   let g:ctrlp_working_path_mode = 0
+   let g:ctrlp_map = '<c-p>'
+   let g:ctrlp_cmd = 'CtrlP'
+   if exists("g:ctrl_user_command")
+     unlet g:ctrlp_user_command
+   endif
+   let g:ctrlp_switch_buffer = 0
+   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
+"}
 
-"Change Directory for Swap File
-set backupdir=./.backup,.,/tmp
-set directory=.,./.backup,/tmp
+
 
 "Setup the Ctags workspace
 set tags=./tags;
@@ -72,40 +123,68 @@ set tags=./tags;
 set smartcase
 set ignorecase
 
-"Relative Number Toggle
-function! NumberToggle()
-    if(&relativenumber == 1)
-        set number
-        set norelativenumber
-    else
-        set number
-        set relativenumber
-    endif
-endfunc
-
-nnoremap <leader>n :call NumberToggle()<cr>
-
-" edit vimrc/zshrc and load vimrc bindings
+" edit vimrc/zshrc/bashrc and load vimrc bindings
 nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>ez :e ~/.zshrc<CR>
 nnoremap <leader>eb :e ~/.bashrc<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
+"Delete Trailing Spaces
+nnoremap <leader>ds :%s/\s\+$//<CR>
+
+"Tab Control
+"{
+   "Jump To last Tab
+   let g:lasttab = 1
+   nmap <Leader>tt :exe "tabn ".g:lasttab<CR>
+   au TabLeave * let g:lasttab = tabpagenr()
+
+   "Open New Tab
+   nmap <leader>te :tabnew<CR>
+"}
+
+"Relative Number Toggle
+"{
+   function! NumberToggle()
+       if(&relativenumber == 1)
+           set number
+           set norelativenumber
+       else
+           set number
+           set relativenumber
+       endif
+   endfunc
+
+   nnoremap <leader>n :call NumberToggle()<cr>
+"}
+
 "Update the tags file
 command! Ctags :!ctags --extra=+q -R
 
-"Disble the beep
-set noeb vb t_vb=
-
-"Virtual Edit Block
-set virtualedit=block
 
 "Airline settings
-let g:airline#extensions#whitespace#checks = ['trailing', 'long']
-set laststatus=2
+"{
+   let g:airline#extensions#whitespace#checks = ['trailing', 'long']
+   " configure the minimum number of tabs needed to show the tabline.
+   let g:airline#extensions#tabline#enabled = 1
+   let g:airline#extensions#tabline#tab_min_count = 2
+   let g:airline#extensions#tabline#show_buffers = 0
+   set laststatus=2
+"}
 
-"Set Clipboard
-set clipboard=unnamedplus
 
-"Remove all trailing whitespace by pressing F5
-nnoremap <leader>ds :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+"clang_complete
+"let g:clang_complete_loaded = 0
+"let g:clang_use_library = 1
+let g:clang_omnicppcomplete_compliance = 1
+let g:clang_close_preview = 1
+let g:clang_cpp_completeopt = 'longest,menuone'
+"let g:clang_compilation_database = './MP'
+
+"Omni Completion
+set omnifunc=syntaxcomplete#Complete
+set completeopt=longest,menuone
+"let g:OmniCpp_GlobalScopeSearch = 1
+"let g:OmniCpp_DisplayMode = 1
+let g:SuperTabMappingForward = '<C-K>'
+let g:SuperTabMappingBackward = '<C-J>'

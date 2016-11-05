@@ -15,11 +15,11 @@ set $mod Mod1
 font pango:monospace 8
 
 # Set the window options
-for_window [class="^.*"] border pixel 5
+for_window [class="^.*"] border pixel 3
 #new_window pixel 3
 #new_float pixel 3
-smart_borders on
-gaps outer 15 
+#smart_borders on
+gaps outer 10 
 gaps inner 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
@@ -162,4 +162,11 @@ bar {
 #StartUp Programs
 exec --no-startup-id compton --config ~/.config/compton.conf -b
 exec --no-startup-id hsetroot -solid '#083215'
+
+#Set the Default workspaces for multimonitor
+workspace 1 output DVI-I-3
+workspace 5 output DVI-I-2
+
+# switch between current and last used workspace
+bindsym $mod+Tab workspace back_and_forth 
 
