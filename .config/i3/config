@@ -19,8 +19,8 @@ for_window [class="^.*"] border pixel 3
 #new_window pixel 3
 #new_float pixel 3
 #smart_borders on
-gaps outer 10 
-gaps inner 10
+#gaps outer 10 
+#gaps inner 10
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -161,11 +161,11 @@ bar {
 #for_window [class="^rdesktop"] move workspace number 5; floating disable
 #StartUp Programs
 exec --no-startup-id compton --config ~/.config/compton.conf -b
-exec --no-startup-id hsetroot -solid '#083215'
+#exec --no-startup-id hsetroot -solid '#083215'
 
 #Set the Default workspaces for multimonitor
-workspace 1 output DVI-I-3
-workspace 5 output DVI-I-2
+#workspace 1 output DVI-I-3
+#workspace 5 output DVI-I-2
 
 # switch between current and last used workspace
 bindsym $mod+Tab workspace back_and_forth 
