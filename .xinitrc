@@ -1,11 +1,12 @@
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 #dual monitor
 xrandr --output DVI-I-2 --left-of DVI-I-3
 xrandr --output DVI-I-2 --primary
 xrandr --output DVI-I-3 --rotate left
 unclutter & #hide mouse pointer when it is not needed
-xedgewarp -b #run let the mouse warp for mismatched displays
+#xedgewarp -b #run let the mouse warp for mismatched displays
 
 #WM
 #openbox------------------------------
@@ -18,5 +19,4 @@ xedgewarp -b #run let the mouse warp for mismatched displays
 #exec bspwm
 #
 #i3----------------------------------
-#xsetroot -solid \#254444 #green background
 exec i3
