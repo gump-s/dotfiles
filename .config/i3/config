@@ -176,16 +176,16 @@ bindsym $mod+Control+9 move container to workspace 9; workspace 9
 bindsym $mod+Control+0 move container to workspace 10; workspace 10
 
 #Set the Default workspaces for multimonitor
-workspace 1 output DVI-I-3
-workspace 2 output DVI-I-3
-workspace 3 output DVI-I-3
-workspace 4 output DVI-I-3
-workspace 5 output DVI-I-3
-workspace 6 output DVI-I-2
-workspace 7 output DVI-I-2
-workspace 8 output DVI-I-2
-workspace 9 output DVI-I-2
-workspace 10 output DVI-I-2
+workspace 1  output DVI-I-2
+workspace 2  output DVI-I-2
+workspace 3  output DVI-I-2
+workspace 4  output DVI-I-2
+workspace 5  output DVI-I-2
+workspace 6  output DVI-I-3
+workspace 7  output DVI-I-3
+workspace 8  output DVI-I-3
+workspace 9  output DVI-I-3
+workspace 10 output DVI-I-3
 
 # switch between current and last used workspace
 bindsym $mod+Tab workspace back_and_forth

@@ -4,7 +4,7 @@ URxvt.perl-ext-common: fullscreen
 URxvt.keysym.F11: perl:fullscreen:switch
 !URxvt.letterSpace: -1
 !URxvt.font: xft:inconsolata:size=11
-URxvt.font: xft:DejaVuSansMono:size=10
+URxvt.font: xft:DejaVuSansMono:size=9
 !Rxvt*color0: #393939
 Rxvt*color1: #ca674a
 !Rxvt*color2: #96a967
@@ -21,3 +21,6 @@ Rxvt*color12: #6f9bca
 Rxvt*color13: #a97ca4
 Rxvt*color14: #32dddd
 Rxvt*color15: #e9e9e7
+
+Xcursor.theme: 
+Xcursor.size: 16

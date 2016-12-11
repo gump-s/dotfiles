@@ -1,46 +1,44 @@
 set nocompatible
 filetype off
 
-"Pathogen
-"execute pathogen#infect()
-"Helptags
+"Vundule Setup
+"{{{
+   if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
+       !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+   endif
 
-if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
-    !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-endif
+   " set the runtime path to include Vundle and initialize
+   set rtp+=~/.vim/bundle/Vundle.vim
+   call vundle#begin()
+   Plugin 'VundleVim/Vundle.vim'
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+   " Keep Plugin commands between vundle#begin/end.
+   " plugin on GitHub repo
+   Plugin 'tpope/vim-fugitive'
+   Plugin 'nanotech/jellybeans.vim'
+   Plugin 'vim-airline/vim-airline'
+   Plugin 'vim-airline/vim-airline-themes'
+   Plugin 'Valloric/YouCompleteMe'
+   Plugin 'ctrlp.vim'
+   "Plugin 'cscope/plugin/cscope_maps'
 
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-Plugin 'Rip-Rip/clang_complete'
-Plugin 'nanotech/jellybeans.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'ctrlp.vim'
-"Plugin 'cscope/plugin/cscope_maps'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+   " All of your Plugins must be added before the following line
+   call vundle#end()            " required
+   "To ignore plugin indent changes, instead use:
+   "filetype plugin on
+   "
+   " Brief help
+   " :PluginList       - lists configured plugins
+   " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+   " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+   " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+   "
+   " see :h vundle for more details or wiki for FAQ
+   " Put your non-Plugin stuff after this line
+"}}}
 
 "System Options
-"{
+"{{{
    "Change Directory for Swap File
    set backupdir=./.backup/,.,~/tmp
    set directory=.,./.backup/,~/tmp
@@ -56,10 +54,10 @@ call vundle#end()            " required
 
    "Clipboard
    set clipboard=unnamed
-"}
+"}}}
 
 "Misc Key Remaps
-"{
+"{{{
    "Insert Mode Map
    inoremap jk <esc>
 
@@ -79,10 +77,10 @@ call vundle#end()            " required
 
    "Virtual Edit Block
    set virtualedit=block
-"}
+"}}}
 
 "Font, colorscheme, and gui options
-"{
+"{{{
    filetype plugin indent on    " required
    syntax enable
    color jellybeans
@@ -92,19 +90,19 @@ call vundle#end()            " required
    "set guifont=Consolas:h10
    set number
    set relativenumber
-"}
+"}}}
 
 "Set tab formatting
-"{
+"{{{
    set tabstop=3
    set softtabstop=3
    set shiftwidth=3
    set expandtab
-"}
+"}}}
 
 
 "CtrlP Options
-"{
+"{{{
    let g:ctrlp_working_path_mode = 0
    let g:ctrlp_map = '<c-p>'
    let g:ctrlp_cmd = 'CtrlP'
@@ -112,9 +110,9 @@ call vundle#end()            " required
      unlet g:ctrlp_user_command
    endif
    let g:ctrlp_switch_buffer = 0
+   let g:ctrlp_show_hidden = 1
    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
-"}
-
+"}}}
 
 
 "Setup the Ctags workspace
@@ -134,7 +132,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ds :%s/\s\+$//<CR>
 
 "Tab Control
-"{
+"{{{
    "Jump To last Tab
    let g:lasttab = 1
    nmap <Leader>tt :exe "tabn ".g:lasttab<CR>
@@ -142,10 +140,10 @@ nnoremap <leader>ds :%s/\s\+$//<CR>
 
    "Open New Tab
    nmap <leader>te :tabnew<CR>
-"}
+"}}}
 
 "Relative Number Toggle
-"{
+"{{{
    function! NumberToggle()
        if(&relativenumber == 1)
            set number
@@ -157,35 +155,18 @@ nnoremap <leader>ds :%s/\s\+$//<CR>
    endfunc
 
    nnoremap <leader>n :call NumberToggle()<cr>
-"}
+"}}}
 
 "Update the tags file
 command! Ctags :!ctags --extra=+q -R
 
-
 "Airline settings
-"{
+"{{{
    let g:airline#extensions#whitespace#checks = ['trailing', 'long']
    " configure the minimum number of tabs needed to show the tabline.
    let g:airline#extensions#tabline#enabled = 1
    let g:airline#extensions#tabline#tab_min_count = 2
    let g:airline#extensions#tabline#show_buffers = 0
    set laststatus=2
-"}
+"}}}
 
-
-"clang_complete
-"let g:clang_complete_loaded = 0
-"let g:clang_use_library = 1
-let g:clang_omnicppcomplete_compliance = 1
-let g:clang_close_preview = 1
-let g:clang_cpp_completeopt = 'longest,menuone'
-"let g:clang_compilation_database = './MP'
-
-"Omni Completion
-set omnifunc=syntaxcomplete#Complete
-set completeopt=longest,menuone
-"let g:OmniCpp_GlobalScopeSearch = 1
-"let g:OmniCpp_DisplayMode = 1
-let g:SuperTabMappingForward = '<C-K>'
-let g:SuperTabMappingBackward = '<C-J>'
