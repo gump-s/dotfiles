@@ -20,6 +20,7 @@ filetype off
    Plugin 'vim-airline/vim-airline-themes'
    Plugin 'Valloric/YouCompleteMe'
    Plugin 'ctrlp.vim'
+   Plugin 'vimwiki'
    "Plugin 'cscope/plugin/cscope_maps'
 
    " All of your Plugins must be added before the following line

@@ -15,7 +15,7 @@ set $mod Mod1
 font pango:monospace 8
 
 # Set the window options
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 5
 #new_window pixel 3
 #new_float pixel 3
 
@@ -159,6 +159,7 @@ bar {
 #StartUp Programs
 exec --no-startup-id compton --config ~/.config/compton.conf -b
 exec --no-startup-id hsetroot -solid '#083215'
+exec xedgewarp -b
 
 # move focused container to workspace and jump to workspace
 bindsym $mod+Control+1 move container to workspace 1; workspace 1

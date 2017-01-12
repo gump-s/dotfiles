@@ -2,6 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 bindkey -v
+bindkey '^[[Z' reverse-menu-complete
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
@@ -54,7 +55,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages vi-mode systemd)
+plugins=(git colored-man-pages vi-mode systemd compinit)
 
 # User configuration
 export KEYTIMEOUT=1
@@ -85,6 +86,8 @@ export EDITOR='vim'
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lla="ls -la"
+alias hibernate="sudo systemctl hibernate"
+alias suspend="sudo systemctl suspend"
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then

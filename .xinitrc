@@ -2,9 +2,10 @@
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 #dual monitor
-xrandr --output DVI-I-2 --left-of DVI-I-3
-xrandr --output DVI-I-2 --primary
-xrandr --output DVI-I-3 --rotate left
+#xrandr --output DVI-I-2 --left-of DVI-I-3
+#xrandr --output DVI-I-2 --primary
+~/.screenlayout/desktop.sh
+
 unclutter & #hide mouse pointer when it is not needed
 #xedgewarp -b #run let the mouse warp for mismatched displays
 
