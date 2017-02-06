@@ -38,6 +38,8 @@ filetype off
    " Put your non-Plugin stuff after this line
 "}}}
 
+"set termguicolors
+
 "System Options
 "{{{
    "Change Directory for Swap File
