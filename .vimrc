@@ -21,6 +21,7 @@ filetype off
    Plugin 'Valloric/YouCompleteMe'
    Plugin 'ctrlp.vim'
    Plugin 'vimwiki'
+   "Plugin 'cscope/plugin/cscope_maps'
 
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
@@ -36,6 +37,8 @@ filetype off
    " see :h vundle for more details or wiki for FAQ
    " Put your non-Plugin stuff after this line
 "}}}
+
+"set termguicolors
 
 "System Options
 "{{{
@@ -108,6 +111,7 @@ filetype off
      unlet g:ctrlp_user_command
    endif
    let g:ctrlp_switch_buffer = 0
+   let g:ctrlp_show_hidden = 1
    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
 "}}}
 
@@ -156,6 +160,9 @@ filetype off
    endfunc
    nnoremap <leader>n :call NumberToggle()<cr>
 "}}}
+
+"Update the tags file
+command! Ctags :!ctags --extra=+q -R
 
 "Airline settings
 "{{{

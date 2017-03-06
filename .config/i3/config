@@ -15,7 +15,7 @@ set $mod Mod1
 font pango:monospace 8
 
 # Set the window options
-for_window [class="^.*"] border pixel 3
+for_window [class="^.*"] border pixel 5
 #new_window pixel 3
 #new_float pixel 3
 
@@ -158,7 +158,8 @@ bar {
 #for_window [class="^rdesktop"] move workspace number 5; floating disable
 #StartUp Programs
 exec --no-startup-id compton --config ~/.config/compton.conf -b
-#exec --no-startup-id hsetroot -solid '#083215'
+exec --no-startup-id hsetroot -solid '#083215'
+exec xedgewarp -b
 
 # move focused container to workspace and jump to workspace
 bindsym $mod+Control+1 move container to workspace 1; workspace 1
@@ -172,6 +173,17 @@ bindsym $mod+Control+8 move container to workspace 8; workspace 8
 bindsym $mod+Control+9 move container to workspace 9; workspace 9
 bindsym $mod+Control+0 move container to workspace 10; workspace 10
 
+#Set the Default workspaces for multimonitor
+workspace 1  output DVI-I-2
+workspace 2  output DVI-I-2
+workspace 3  output DVI-I-2
+workspace 4  output DVI-I-2
+workspace 5  output DVI-I-2
+workspace 6  output DVI-I-3
+workspace 7  output DVI-I-3
+workspace 8  output DVI-I-3
+workspace 9  output DVI-I-3
+workspace 10 output DVI-I-3
+
 # switch between current and last used workspace
 bindsym $mod+Tab workspace back_and_forth
-
