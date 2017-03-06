@@ -20,6 +20,7 @@ filetype off
    Plugin 'vim-airline/vim-airline-themes'
    Plugin 'Valloric/YouCompleteMe'
    Plugin 'ctrlp.vim'
+   Plugin 'vimwiki'
    "Plugin 'cscope/plugin/cscope_maps'
 
    " All of your Plugins must be added before the following line
@@ -36,6 +37,8 @@ filetype off
    " see :h vundle for more details or wiki for FAQ
    " Put your non-Plugin stuff after this line
 "}}}
+
+"set termguicolors
 
 "System Options
 "{{{
