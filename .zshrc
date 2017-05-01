@@ -57,7 +57,6 @@ ENABLE_CORRECTION="false"
 plugins=(git colored-man-pages vi-mode systemd compinit)
 
 # User configuration
-export KEYTIMEOUT=1
 # export MANPATH="/usr/local/man:$MANPATH"
 #
 setopt NO_BEEP
@@ -65,6 +64,7 @@ setopt MENU_COMPLETE
 setopt HIST_FIND_NO_DUPS
 bindkey '^[[Z' reverse-menu-complete
 
+KEYTIMEOUT=1
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
