@@ -4,7 +4,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 bindkey '^[[Z' reverse-menu-complete
 # Path to your oh-my-zsh installation.
 #ZSH=/usr/share/oh-my-zsh/
-export ZSH=/home/gump_s/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -54,7 +54,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages vi-mode systemd compinit)
+plugins=(git colored-man-pages vi-mode)
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -88,16 +88,15 @@ export EDITOR='vim'
 #
 # Example aliases
 alias zshconfig="vim ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lla="ls -la"
-alias hibernate="sudo systemctl hibernate"
-alias suspend="sudo systemctl suspend"
-alias steam-wine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
+workspace="/mnt/c/Workspace"
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
-
 source $ZSH/oh-my-zsh.sh
+#perforce settings
+source .perforce-settings

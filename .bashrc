@@ -14,7 +14,7 @@
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
-#export DISPLAY=:0
+export DISPLAY=localhost:0.0
 #export TERM=xterm-256color
 #export TERM=rxvt-unicode
 #export COLORTERM=rxvt-unicode
@@ -83,4 +83,8 @@ export HISTCONTROL=ignoreboth:erasedups
 if [ -f "${HOME}/.bash_aliases" ]; then
   source "${HOME}/.bash_aliases"
 fi
-#
+
+#launch Zsh
+if [ -t 1 ]; then
+   exec zsh
+fi

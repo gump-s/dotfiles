@@ -18,10 +18,14 @@ filetype off
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
-   Plugin 'Valloric/YouCompleteMe'
+   "   Plugin 'Valloric/YouCompleteMe'
    Plugin 'ctrlp.vim'
    Plugin 'vimwiki'
-   "Plugin 'cscope/plugin/cscope_maps'
+   "Plugin 'cscope_maps'
+   Plugin 'ajh17/VimCompletesMe'
+   Plugin 'scrooloose/nerdtree'
+   Plugin 'jistr/vim-nerdtree-tabs'
+   Plugin 'tabline.vim'
 
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
@@ -97,9 +101,9 @@ filetype off
 
 "Set tab formatting
 "{{{
-   set tabstop=3
-   set softtabstop=3
-   set shiftwidth=3
+   set tabstop=4
+   set softtabstop=4
+   set shiftwidth=4
    set expandtab
 "}}}
 
@@ -114,12 +118,24 @@ filetype off
    endif
    let g:ctrlp_switch_buffer = 0
    let g:ctrlp_show_hidden = 1
-   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
+   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg,*.pbi,*.pdf,
 "}}}
 
+"NERDtree Options
+"{{{
+    map <C-n> :NERDTreeTabsToggle<CR>
+    map <leader>r :NERDTreeFind<CR>
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    let g:NERDTreeWinSize = 50
+"}}}
 
-"Setup the Ctags workspace
-set tags=./tags;
+"Ctags and Cscope setup
+"{{{
+    "Setup the Ctags workspace
+    set tags=./tags;
+    "check ctags db before cscope
+    set csto=1
+"}}}
 
 "Seach Parameters
 set smartcase
