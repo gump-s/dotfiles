@@ -31,6 +31,7 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -157,9 +158,9 @@ bar {
 
 #for_window [class="^rdesktop"] move workspace number 5; floating disable
 #StartUp Programs
-exec --no-startup-id compton --config ~/.config/compton.conf -b
-exec --no-startup-id hsetroot -solid '#083215'
-exec xedgewarp -b
+#exec --no-startup-id compton --config ~/.config/compton.conf -b
+#exec --no-startup-id hsetroot -solid '#083215'
+#exec xedgewarp -b
 
 # move focused container to workspace and jump to workspace
 bindsym $mod+Control+1 move container to workspace 1; workspace 1

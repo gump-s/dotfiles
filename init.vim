@@ -1,47 +1,49 @@
-set nocompatible
-filetype off
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
 
-"Vundule Setup
+" Required:
+set runtimepath+=/home/scott/.config/nvim/bundle/./repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('/home/scott/.config/nvim/bundle/.')
+  call dein#begin('/home/scott/.config/nvim/bundle/.')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add('/home/scott/.config/nvim/bundle/repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('nanotech/jellybeans.vim')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('Shougo/vimshell')
+  call dein#add('kien/ctrlp.vim')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
+
+"nvim specific
 "{{{
-   if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
-       !git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-   endif
-
-   " set the runtime path to include Vundle and initialize
-   set rtp+=~/.vim/bundle/Vundle.vim
-   call vundle#begin()
-   Plugin 'VundleVim/Vundle.vim'
-
-   " Keep Plugin commands between vundle#begin/end.
-   " plugin on GitHub repo
-   Plugin 'tpope/vim-fugitive'
-   Plugin 'nanotech/jellybeans.vim'
-   Plugin 'vim-airline/vim-airline'
-   Plugin 'vim-airline/vim-airline-themes'
-   Plugin 'Valloric/YouCompleteMe'
-   Plugin 'ctrlp.vim'
-   Plugin 'vimwiki'
-   Plugin 'godlygeek/tabular'
-   Plugin 'plasticboy/vim-markdown'
-   "Plugin 'ajh17/VimCompletesMe'
-   "Plugin 'cscope/plugin/cscope_maps'
-
-   " All of your Plugins must be added before the following line
-   call vundle#end()            " required
-   "To ignore plugin indent changes, instead use:
-   "filetype plugin on
-   "
-   " Brief help
-   " :PluginList       - lists configured plugins
-   " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-   " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-   " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-   "
-   " see :h vundle for more details or wiki for FAQ
-   " Put your non-Plugin stuff after this line
+   set termguicolors
 "}}}
-
-"set termguicolors
 
 "System Options
 "{{{
@@ -60,9 +62,6 @@ filetype off
 
    "Clipboard
    set clipboard=unnamed
-
-   set encoding=utf-8
-   set completeopt-=preview
 "}}}
 
 "Misc Key Remaps
@@ -172,7 +171,6 @@ command! Ctags :!ctags --extra=+q -R
 "Airline settings
 "{{{
    let g:airline#extensions#whitespace#checks = ['trailing', 'long']
-   let g:airline#powerline#fonts = 1
    " configure the minimum number of tabs needed to show the tabline.
    let g:airline#extensions#tabline#enabled = 1
    let g:airline#extensions#tabline#tab_min_count = 2
