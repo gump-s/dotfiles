@@ -1,11 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-bindkey -v
 bindkey '^[[Z' reverse-menu-complete
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
-
+#ZSH=/usr/share/oh-my-zsh/
+export ZSH=/home/gump_s/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -58,9 +57,14 @@ ENABLE_CORRECTION="false"
 plugins=(git colored-man-pages vi-mode systemd compinit)
 
 # User configuration
-export KEYTIMEOUT=1
 # export MANPATH="/usr/local/man:$MANPATH"
+#
+setopt NO_BEEP
+setopt MENU_COMPLETE
+setopt HIST_FIND_NO_DUPS
+bindkey '^[[Z' reverse-menu-complete
 
+KEYTIMEOUT=1
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
