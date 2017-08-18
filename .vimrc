@@ -18,15 +18,18 @@ filetype off
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
-   "   Plugin 'Valloric/YouCompleteMe'
    Plugin 'ctrlp.vim'
    Plugin 'vimwiki'
-   "Plugin 'cscope_maps'
-   Plugin 'ajh17/VimCompletesMe'
+   Plugin 'prabirshrestha/asyncomplete.vim'
+   Plugin 'prabirshrestha/asyncomplete-tags.vim'
+   Plugin 'prabirshrestha/asyncomplete-buffer.vim'
+   Plugin 'yami-beta/asyncomplete-omni.vim'
    Plugin 'scrooloose/nerdtree'
    Plugin 'jistr/vim-nerdtree-tabs'
-   Plugin 'tabline.vim'
-
+   Plugin 'plasticboy/vim-markdown'
+   Plugin 'majutsushi/tagbar'
+   Plugin 'fakeclip'
+   "Plugin 'a.vim'
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
    "To ignore plugin indent changes, instead use:
@@ -42,8 +45,6 @@ filetype off
    " Put your non-Plugin stuff after this line
 "}}}
 
-"set termguicolors
-
 "System Options
 "{{{
    "Change Directory for Swap File
@@ -54,13 +55,22 @@ filetype off
    "exec 'set viminfo=%,' . &viminfo
 
    "Change the leader to space
-   let mapleader="\<space>"
+   let mapleader="\<Space>"
 
-   "Backspace Settings
+  "Backspace Settings
    set backspace=2
 
    "Clipboard
-   set clipboard=unnamed
+   set clipboard=unnamedplus
+
+   set encoding=utf-8
+   set completeopt-=preview
+
+   "Vimdiff
+   set diffopt+=iwhite
+
+   "Cursor line
+   set nocursorline
 "}}}
 
 "Misc Key Remaps
@@ -118,7 +128,10 @@ filetype off
    endif
    let g:ctrlp_switch_buffer = 0
    let g:ctrlp_show_hidden = 1
-   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg,*.pbi,*.pdf,
+   let g:ctrlp_follow_symlinks = 1
+   nnoremap <leader>pt :CtrlPTag<CR>
+   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,
+                    \*.svn*,*.o,*.lst,*.scs,*.sts,*.peg,*.pbi,*.pdf,*.cout
 "}}}
 
 "NERDtree Options
@@ -135,6 +148,17 @@ filetype off
     set tags=./tags;
     "check ctags db before cscope
     set csto=1
+    "Update the tags file
+    command! Ctags :!ctags --extra=+q -R
+
+    "Async tag update
+    function! Tagup()
+        cs kill 0
+        silent !sh ~/scripts/tag_update
+        redraw!
+        cs add cscope.out
+    endfunc
+    nnoremap <leader>tu :call Tagup()<CR>
 "}}}
 
 "Seach Parameters
@@ -176,16 +200,64 @@ nnoremap <leader>ds :%s/\s\+$//<CR>
    nnoremap <leader>n :call NumberToggle()<cr>
 "}}}
 
-"Update the tags file
-command! Ctags :!ctags --extra=+q -R
-
 "Airline settings
 "{{{
    let g:airline#extensions#whitespace#checks = ['trailing', 'long']
+   let g:airline#powerline#fonts = 1
    " configure the minimum number of tabs needed to show the tabline.
    let g:airline#extensions#tabline#enabled = 1
    let g:airline#extensions#tabline#tab_min_count = 2
    let g:airline#extensions#tabline#show_buffers = 0
+   let g:airline#extensions#tabline#tab_nr_type = 1
    set laststatus=2
 "}}}
 
+"Tagbar settings"
+"{{{
+    nnoremap <leader>tb :TagbarToggle<CR>
+"}}}
+
+"Completion Settings
+"{{{
+   noremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+   let g:asyncomplete_auto_popup = 0
+
+   function! s:check_back_space() abort
+       let col = col('.') - 1
+           return !col || getline('.')[col - 1]  =~ '\s'
+   endfunction
+
+   inoremap <silent><expr> <TAB>
+     \ pumvisible() ? "\<C-n>" :
+     \ <SID>check_back_space() ? "\<TAB>" :
+     \ asyncomplete#force_refresh()
+   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+        \ 'name': 'tags',
+        \ 'whitelist': ['c'],
+        \ 'completor': function('asyncomplete#sources#tags#completor'),
+        \ 'config': {
+        \   'max_file_size': -1,
+        \   },
+        \ }))
+   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+        \ 'name': 'omni',
+        \ 'whitelist': ['*'],
+        \ 'completor': function('asyncomplete#sources#omni#completor')
+        \  }))
+   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+        \ 'name': 'buffer',
+        \ 'whitelist': ['*'],
+        \ 'blacklist': ['go'],
+        \ 'completor': function('asyncomplete#sources#buffer#completor'),
+        \ }))
+"}}}
+"
+"
+"Filetype settings
+"{{{
+    au BufRead,BufNewFile *.CPP set filetype=cpp
+"}}}

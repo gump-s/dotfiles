@@ -1,7 +1,7 @@
 URxvt*scrollBar: false
 URxvt*reverseVideo: true
-URxvt.perl-ext-common: fullscreen
-URxvt.keysym.F11: perl:fullscreen:switch
+!URxvt.perl-ext-common: fullscreen
+!URxvt.keysym.F11: perl:fullscreen:switch
 URxvt.font: xft:DejaVu Sans Mono for Powerline:size=9:hinting=true:antialias=true
 
 !Rxvt*color0: #393939
