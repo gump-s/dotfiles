@@ -16,6 +16,8 @@ filetype off
    " plugin on GitHub repo
    Plugin 'tpope/vim-fugitive'
    Plugin 'nanotech/jellybeans.vim'
+   Plugin 'tpope/vim-vividchalk'
+   Plugin 'w0ng/vim-hybrid'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
    Plugin 'ctrlp.vim'
@@ -29,6 +31,8 @@ filetype off
    Plugin 'plasticboy/vim-markdown'
    Plugin 'majutsushi/tagbar'
    Plugin 'fakeclip'
+   Plugin 'vim-scripts/DoxygenToolkit.vim'
+   Plugin 'camelcasemotion'
    "Plugin 'a.vim'
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
@@ -94,6 +98,12 @@ filetype off
 
    "Virtual Edit Block
    set virtualedit=block
+
+   "Doxygen highlighting
+   let g:load_doxygen_syntax=1
+
+   "remap file switching
+   nnoremap <leader><leader> <C-^>
 "}}}
 
 "Font, colorscheme, and gui options
@@ -101,10 +111,8 @@ filetype off
    filetype plugin indent on    " required
    syntax enable
    color jellybeans
-   set t_ut=
-   set t_Co=256
-   "set background=dark
-   "set guifont=Consolas:h10
+   "color hybrid
+   "color vividchalk
    set number
    set relativenumber
 "}}}
@@ -260,4 +268,8 @@ nnoremap <leader>ds :%s/\s\+$//<CR>
 "Filetype settings
 "{{{
     au BufRead,BufNewFile *.CPP set filetype=cpp
+"}}}
+"
+"Doxygen Toolkit settings
+"{{{
 "}}}
