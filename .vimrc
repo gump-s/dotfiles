@@ -17,6 +17,8 @@ filetype off
    Plugin 'tpope/vim-fugitive'
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'tpope/vim-vividchalk'
+   Plugin 'tomasr/molokai'
+   Plugin 'sickill/vim-monokai'
    Plugin 'w0ng/vim-hybrid'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
@@ -27,12 +29,12 @@ filetype off
    Plugin 'prabirshrestha/asyncomplete-buffer.vim'
    Plugin 'yami-beta/asyncomplete-omni.vim'
    Plugin 'scrooloose/nerdtree'
-   Plugin 'jistr/vim-nerdtree-tabs'
    Plugin 'plasticboy/vim-markdown'
    Plugin 'majutsushi/tagbar'
    Plugin 'fakeclip'
    Plugin 'vim-scripts/DoxygenToolkit.vim'
    Plugin 'camelcasemotion'
+   Plugin 'godlygeek/tabular'
    "Plugin 'a.vim'
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
@@ -75,6 +77,9 @@ filetype off
 
    "Cursor line
    set nocursorline
+
+   "Lazy redraw
+   set lazyredraw
 "}}}
 
 "Misc Key Remaps
@@ -115,6 +120,8 @@ filetype off
    "color vividchalk
    set number
    set relativenumber
+   set t_Co=256
+   set t_ut=
 "}}}
 
 "Set tab formatting
@@ -139,12 +146,14 @@ filetype off
    let g:ctrlp_follow_symlinks = 1
    nnoremap <leader>pt :CtrlPTag<CR>
    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,
-                    \*.svn*,*.o,*.lst,*.scs,*.sts,*.peg,*.pbi,*.pdf,*.cout
+                    \*.svn*,*.o,*.lst,*.scs,*.sts,*.peg,*.pbi,*.pdf,*.cout,
+                    \*.xcl
 "}}}
 
 "NERDtree Options
 "{{{
-    map <C-n> :NERDTreeTabsToggle<CR>
+    "map <C-n> :NERDTreeTabsToggle<CR>
+    map <C-n> :NERDTreeToggle<CR>
     map <leader>r :NERDTreeFind<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     let g:NERDTreeWinSize = 50
@@ -170,8 +179,10 @@ filetype off
 "}}}
 
 "Seach Parameters
-set smartcase
-set ignorecase
+"{{{
+    set smartcase
+    set ignorecase
+"}}}
 
 " edit vimrc/zshrc/bashrc and load vimrc bindings
 nnoremap <leader>ev :e $MYVIMRC<CR>
@@ -182,6 +193,9 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 "Delete Trailing Spaces
 nnoremap <leader>ds :%s/\s\+$//<CR>
 
+"Fix C comments
+command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
+
 "Tab Control
 "{{{
    "Jump To last Tab
@@ -190,7 +204,7 @@ nnoremap <leader>ds :%s/\s\+$//<CR>
    au TabLeave * let g:lasttab = tabpagenr()
 
    "Open New Tab
-   nmap <leader>te :tabnew<CR>
+   nmap <leader>te :tabnew<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>
 "}}}
 
 "Relative Number Toggle
@@ -263,13 +277,17 @@ nnoremap <leader>ds :%s/\s\+$//<CR>
         \ 'completor': function('asyncomplete#sources#buffer#completor'),
         \ }))
 "}}}
-"
-"
+
+
 "Filetype settings
 "{{{
     au BufRead,BufNewFile *.CPP set filetype=cpp
 "}}}
 "
 "Doxygen Toolkit settings
+"{{{
+"}}}
+"
+"Tabular
 "{{{
 "}}}
