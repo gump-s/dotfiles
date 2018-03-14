@@ -28,7 +28,7 @@ HYPHEN_INSENSITIVE="true"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+#DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -99,6 +99,22 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
+#[[ -z "$TMUX" && -n "$USE_TMUX" ]] && {
+#    [[ -n "$ATTACH_ONLY" ]] && {
+#        tmux a 2>/dev/null || {
+#            cd && exec tmux
+#        }
+#        exit
+#    }
+#
+#    tmux new-window -c "$PWD" 2>/dev/null && exec tmux a
+#    exec tmux
+#}
+
 source $ZSH/oh-my-zsh.sh
 #perforce settings
 #source .perforce-settings
+#
+cd ~
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
