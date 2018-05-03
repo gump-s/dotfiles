@@ -17,6 +17,7 @@ filetype off
    Plugin 'tpope/vim-fugitive'
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'tpope/vim-vividchalk'
+   Plugin 'tpope/vim-surround'
    Plugin 'tomasr/molokai'
    Plugin 'sickill/vim-monokai'
    Plugin 'w0ng/vim-hybrid'
@@ -35,6 +36,7 @@ filetype off
    Plugin 'vim-scripts/DoxygenToolkit.vim'
    Plugin 'camelcasemotion'
    Plugin 'godlygeek/tabular'
+   Plugin 'dhruvasagar/vim-table-mode'
    "Plugin 'a.vim'
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
@@ -157,6 +159,7 @@ filetype off
     map <leader>r :NERDTreeFind<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     let g:NERDTreeWinSize = 50
+    let g:NERDTreeShowHidden=1
 "}}}
 
 "Ctags and Cscope setup
@@ -290,4 +293,12 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
 "
 "Tabular
 "{{{
+"}}}
+
+"Table Mode
+"{{{
+    let g:table_mode_map_prefix = '<leader>a'
+    let g:table_mode_toggle_map = 'm'
+    let g:table_mode_corner_corner='+'
+    let table_mode_header_fillchar='='
 "}}}
