@@ -32,6 +32,7 @@ filetype off
    Plugin 'junegunn/fzf.vim'
    Plugin 'cscope_macros.vim'
    Plugin 'nfvs/vim-perforce'
+   Plugin 'dhruvasagar/vim-table-mode'
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
    "To ignore plugin indent changes, instead use:
@@ -167,7 +168,12 @@ filetype off
     map <C-n> :NERDTreeToggle<CR>
     map <leader>r :NERDTreeFind<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+<<<<<<< HEAD
     let g:NERDTreeWinSize = 60
+=======
+    let g:NERDTreeWinSize = 50
+    let g:NERDTreeShowHidden=1
+>>>>>>> 4f98a7aee52661ea8e5572bbf649c067667eca77
 "}}}
 
 "Ctags and Cscope setup
@@ -303,4 +309,12 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
 "
 "Tabular
 "{{{
+"}}}
+
+"Table Mode
+"{{{
+    let g:table_mode_map_prefix = '<leader>a'
+    let g:table_mode_toggle_map = 'm'
+    let g:table_mode_corner_corner='+'
+    let table_mode_header_fillchar='='
 "}}}
