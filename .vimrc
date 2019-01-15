@@ -168,12 +168,7 @@ filetype off
     map <C-n> :NERDTreeToggle<CR>
     map <leader>r :NERDTreeFind<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-<<<<<<< HEAD
     let g:NERDTreeWinSize = 60
-=======
-    let g:NERDTreeWinSize = 50
-    let g:NERDTreeShowHidden=1
->>>>>>> 4f98a7aee52661ea8e5572bbf649c067667eca77
 "}}}
 
 "Ctags and Cscope setup
