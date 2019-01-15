@@ -9,6 +9,7 @@ filetype off
 
    " set the runtime path to include Vundle and initialize
    set rtp+=~/.vim/bundle/Vundle.vim
+   set rtp+=~/.fzf
    call vundle#begin()
    Plugin 'VundleVim/Vundle.vim'
 
@@ -16,26 +17,21 @@ filetype off
    " plugin on GitHub repo
    Plugin 'tpope/vim-fugitive'
    Plugin 'nanotech/jellybeans.vim'
-   Plugin 'tpope/vim-vividchalk'
-   Plugin 'tomasr/molokai'
-   Plugin 'sickill/vim-monokai'
-   Plugin 'w0ng/vim-hybrid'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
-   Plugin 'ctrlp.vim'
    Plugin 'vimwiki'
-   Plugin 'prabirshrestha/asyncomplete.vim'
-   Plugin 'prabirshrestha/asyncomplete-tags.vim'
-   Plugin 'prabirshrestha/asyncomplete-buffer.vim'
-   Plugin 'yami-beta/asyncomplete-omni.vim'
+   "Plugin 'prabirshrestha/asyncomplete.vim'
+   "Plugin 'prabirshrestha/asyncomplete-tags.vim'
+   "Plugin 'prabirshrestha/asyncomplete-buffer.vim'
+   "Plugin 'yami-beta/asyncomplete-omni.vim'
    Plugin 'scrooloose/nerdtree'
    Plugin 'plasticboy/vim-markdown'
    Plugin 'majutsushi/tagbar'
-   Plugin 'fakeclip'
    Plugin 'vim-scripts/DoxygenToolkit.vim'
-   Plugin 'camelcasemotion'
    Plugin 'godlygeek/tabular'
-   "Plugin 'a.vim'
+   Plugin 'junegunn/fzf.vim'
+   Plugin 'cscope_macros.vim'
+   Plugin 'nfvs/vim-perforce'
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
    "To ignore plugin indent changes, instead use:
@@ -67,9 +63,11 @@ filetype off
    set backspace=2
 
    "Clipboard
-   set clipboard=unnamedplus
+   "set clipboard=unnamedplus
+   set clipboard=unnamed
 
    set encoding=utf-8
+   set fileencoding=utf-8
    set completeopt-=preview
 
    "Vimdiff
@@ -80,6 +78,9 @@ filetype off
 
    "Lazy redraw
    set lazyredraw
+
+   "timeout option
+   set ttimeoutlen=0
 "}}}
 
 "Misc Key Remaps
@@ -87,8 +88,8 @@ filetype off
    "Insert Mode Map
    inoremap jk <esc>
 
-   "Save with leader+w
-   nmap <leader>w :w<CR>
+   "Save with leader+tab
+   nmap <leader><tab> :w<CR>
 
    "Normal Mode Map
    nnoremap <C-J> <C-W><C-J>
@@ -98,6 +99,7 @@ filetype off
 
    "This unsets the 'last search pattern' register by hitting return
    nnoremap <CR> :noh<CR><CR>:<backspace>
+
    "Disble the beep
    set noeb vb t_vb=
 
@@ -135,19 +137,28 @@ filetype off
 
 "CtrlP Options
 "{{{
-   let g:ctrlp_working_path_mode = 0
-   let g:ctrlp_map = '<c-p>'
-   let g:ctrlp_cmd = 'CtrlP'
-   if exists("g:ctrl_user_command")
-     unlet g:ctrlp_user_command
-   endif
-   let g:ctrlp_switch_buffer = 0
-   let g:ctrlp_show_hidden = 1
-   let g:ctrlp_follow_symlinks = 1
-   nnoremap <leader>pt :CtrlPTag<CR>
-   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,
-                    \*.svn*,*.o,*.lst,*.scs,*.sts,*.peg,*.pbi,*.pdf,*.cout,
-                    \*.xcl
+"   let g:ctrlp_working_path_mode = 0
+"   let g:ctrlp_map = '<c-p>'
+"   let g:ctrlp_cmd = 'CtrlP'
+"   if exists("g:ctrl_user_command")
+"     unlet g:ctrlp_user_command
+"   endif
+"   let g:ctrlp_switch_buffer = 0
+"   let g:ctrlp_show_hidden = 1
+"   let g:ctrlp_follow_symlinks = 1
+"   let g:ctrlp_max_files = 100000
+"   let g:ctrlp_max_depth = 40
+"   nnoremap <leader>pt :CtrlPTag<CR>
+"   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,
+"                    \*.svn*,*.o,*.lst,*.scs,*.sts,*.peg,*.pbi,*.pdf,*.cout,
+"                    \*.xcl
+"}}}
+"
+"FZF options
+"{{{
+    nnoremap <c-p> :FZF<CR>
+    nnoremap <leader>p :Buffers<CR>
+    let g:fzf_buffers_jump=1
 "}}}
 
 "NERDtree Options
@@ -156,7 +167,7 @@ filetype off
     map <C-n> :NERDTreeToggle<CR>
     map <leader>r :NERDTreeFind<CR>
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-    let g:NERDTreeWinSize = 50
+    let g:NERDTreeWinSize = 60
 "}}}
 
 "Ctags and Cscope setup
@@ -164,7 +175,7 @@ filetype off
     "Setup the Ctags workspace
     set tags=./tags;
     "check ctags db before cscope
-    set csto=1
+    "set csto=1
     "Update the tags file
     command! Ctags :!ctags --extra=+q -R
 
@@ -204,7 +215,8 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
    au TabLeave * let g:lasttab = tabpagenr()
 
    "Open New Tab
-   nmap <leader>te :tabnew<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>
+   "nmap <leader>te :tabnew<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>
+   nmap <leader>te :tabnew<CR>
 "}}}
 
 "Relative Number Toggle
@@ -241,41 +253,42 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
 
 "Completion Settings
 "{{{
-   noremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-   let g:asyncomplete_auto_popup = 0
-
-   function! s:check_back_space() abort
-       let col = col('.') - 1
-           return !col || getline('.')[col - 1]  =~ '\s'
-   endfunction
-
-   inoremap <silent><expr> <TAB>
-     \ pumvisible() ? "\<C-n>" :
-     \ <SID>check_back_space() ? "\<TAB>" :
-     \ asyncomplete#force_refresh()
-   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-        \ 'name': 'tags',
-        \ 'whitelist': ['c'],
-        \ 'completor': function('asyncomplete#sources#tags#completor'),
-        \ 'config': {
-        \   'max_file_size': -1,
-        \   },
-        \ }))
-   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-        \ 'name': 'omni',
-        \ 'whitelist': ['*'],
-        \ 'completor': function('asyncomplete#sources#omni#completor')
-        \  }))
-   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-        \ 'name': 'buffer',
-        \ 'whitelist': ['*'],
-        \ 'blacklist': ['go'],
-        \ 'completor': function('asyncomplete#sources#buffer#completor'),
-        \ }))
+"   noremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+"   let g:asyncomplete_auto_popup = 0
+"   let g:asyncomplete_remove_duplicates = 1
+"
+"   function! s:check_back_space() abort
+"       let col = col('.') - 1
+"           return !col || getline('.')[col - 1]  =~ '\s'
+"   endfunction
+"
+"   inoremap <silent><expr> <TAB>
+"     \ pumvisible() ? "\<C-n>" :
+"     \ <SID>check_back_space() ? "\<TAB>" :
+"     \ asyncomplete#force_refresh()
+"   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+"
+"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
+"        \ 'name': 'tags',
+"        \ 'whitelist': ['c'],
+"        \ 'completor': function('asyncomplete#sources#tags#completor'),
+"        \ 'config': {
+"        \   'max_file_size': -1,
+"        \   },
+"        \ }))
+"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+"        \ 'name': 'omni',
+"        \ 'whitelist': ['*'],
+"        \ 'completor': function('asyncomplete#sources#omni#completor')
+"        \  }))
+"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+"        \ 'name': 'buffer',
+"        \ 'whitelist': ['*'],
+"        \ 'blacklist': ['go'],
+"        \ 'completor': function('asyncomplete#sources#buffer#completor'),
+"        \ }))
 "}}}
 
 

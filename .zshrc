@@ -2,11 +2,10 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:$HOME/scripts
 
-bindkey '^[[Z' reverse-menu-complete
 # Path to your oh-my-zsh installation.
 #ZSH=/usr/share/oh-my-zsh/
 export ZSH=$HOME/.oh-my-zsh
-export DISPLAY=localhost:0.0
+export DISPLAY=:0
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -63,8 +62,8 @@ plugins=(git colored-man-pages vi-mode)
 #
 setopt NO_BEEP
 setopt MENU_COMPLETE
-setopt HIST_FIND_NO_DUPS
 bindkey '^[[Z' reverse-menu-complete
+setopt hist_find_no_dups
 
 KEYTIMEOUT=1
 # You may need to manually set your language environment
@@ -92,7 +91,6 @@ export EDITOR='vim'
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lla="ls -la"
-workspace="/mnt/c/Workspace"
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
@@ -112,9 +110,13 @@ fi
 #}
 
 source $ZSH/oh-my-zsh.sh
-#perforce settings
-#source .perforce-settings
-#
-cd ~
 
+#perforce settings
+export P4CONFIG=.p4config
+
+#fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+#cd ~
+

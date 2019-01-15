@@ -14,7 +14,7 @@
 # If not running interactively, don't do anything
 [[ "$-" != *i* ]] && return
 
-export DISPLAY=localhost:0.0
+export DISPLAY=:0
 #export TERM=xterm-256color
 #export TERM=rxvt-unicode
 #export COLORTERM=rxvt-unicode
