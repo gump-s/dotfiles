@@ -18,8 +18,12 @@ filetype off
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
-   Plugin 'ctrlp.vim'
    Plugin 'vimwiki'
+   Plugin 'majutsushi/tagbar'
+   Plugin 'scrooloose/nerdtree'
+   Plugin 'mkitt/tabline.vim'
+   Plugin 'junegunn/fzf.vim'
+   Plugin 'junegunn/fzf'
 
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
@@ -104,15 +108,21 @@ filetype off
 
 "CtrlP Options
 "{{{
-   let g:ctrlp_working_path_mode = 0
-   let g:ctrlp_map = '<c-p>'
-   let g:ctrlp_cmd = 'CtrlP'
-   if exists("g:ctrl_user_command")
-     unlet g:ctrlp_user_command
-   endif
-   let g:ctrlp_switch_buffer = 0
-   let g:ctrlp_show_hidden = 1
-   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
+"   let g:ctrlp_working_path_mode = 0
+"   let g:ctrlp_map = '<c-p>'
+"   let g:ctrlp_cmd = 'CtrlP'
+"   if exists("g:ctrl_user_command")
+"     unlet g:ctrlp_user_command
+"   endif
+"   let g:ctrlp_switch_buffer = 0
+"   let g:ctrlp_show_hidden = 1
+"   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
+"}}}
+
+"FZF
+"{{{
+   nnoremap <c-p> :FZF<CR>
+   nnoremap <leader>p :Buffers<CR>
 "}}}
 
 "Setup the Ctags workspace
@@ -170,3 +180,21 @@ command! Ctags :!ctags --extra=+q -R
    set laststatus=2
 "}}}
 
+"cscope maps
+"{{{
+   nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+   nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+   nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+"}}}
+
+"tagbar
+   nmap <leader>tb :TagbarToggle<CR>
+
+"nerdree
+   nmap <C-n> :NERDTreeToggle<CR>
+   let g:NERDTreeWinSize=50
