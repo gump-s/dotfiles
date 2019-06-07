@@ -89,8 +89,8 @@ filetype off
    filetype plugin indent on    " required
    syntax enable
    color jellybeans
-   set t_ut=
-   set t_Co=256
+   "set t_ut=
+   "set t_Co=256
    "set background=dark
    "set guifont=Consolas:h10
    set number
