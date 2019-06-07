@@ -18,10 +18,8 @@ filetype off
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
-   Plugin 'Valloric/YouCompleteMe'
    Plugin 'ctrlp.vim'
    Plugin 'vimwiki'
-   "Plugin 'cscope/plugin/cscope_maps'
 
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
@@ -65,7 +63,7 @@ filetype off
    inoremap jk <esc>
 
    "Save with leader+w
-   nmap <leader>w :w<CR>
+   nmap <leader><tab> :w<CR>
 
    "Normal Mode Map
    nnoremap <C-J> <C-W><C-J>
@@ -87,8 +85,8 @@ filetype off
    filetype plugin indent on    " required
    syntax enable
    color jellybeans
-   set t_ut=
-   set t_Co=256
+   "set t_ut=
+   "set t_Co=256
    "set background=dark
    "set guifont=Consolas:h10
    set number
@@ -116,7 +114,6 @@ filetype off
    let g:ctrlp_show_hidden = 1
    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
 "}}}
-
 
 "Setup the Ctags workspace
 set tags=./tags;
