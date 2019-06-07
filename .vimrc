@@ -18,7 +18,6 @@ filetype off
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
-   "Plugin 'ctrlp.vim'
    Plugin 'vimwiki'
    Plugin 'majutsushi/tagbar'
    Plugin 'scrooloose/nerdtree'
@@ -183,14 +182,14 @@ command! Ctags :!ctags --extra=+q -R
 
 "cscope maps
 "{{{
-   nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
-   nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
-   nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-   nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-   nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-   nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+   nmap <leader>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+   nmap <leader>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
    nmap <leader>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-   nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+   nmap <leader>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 "}}}
 
 "tagbar
