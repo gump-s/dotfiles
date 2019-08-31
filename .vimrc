@@ -24,6 +24,7 @@ filetype off
    Plugin 'mkitt/tabline.vim'
    Plugin 'junegunn/fzf.vim'
    Plugin 'junegunn/fzf'
+   Plugin 'cscope_macros.vim'
 
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
@@ -89,8 +90,8 @@ filetype off
    filetype plugin indent on    " required
    syntax enable
    color jellybeans
-   "set t_ut=
-   "set t_Co=256
+   set t_ut=
+   set t_Co=256
    "set background=dark
    "set guifont=Consolas:h10
    set number
@@ -99,24 +100,10 @@ filetype off
 
 "Set tab formatting
 "{{{
-   set tabstop=3
-   set softtabstop=3
-   set shiftwidth=3
+   set tabstop=4
+   set softtabstop=4
+   set shiftwidth=4
    set expandtab
-"}}}
-
-
-"CtrlP Options
-"{{{
-"   let g:ctrlp_working_path_mode = 0
-"   let g:ctrlp_map = '<c-p>'
-"   let g:ctrlp_cmd = 'CtrlP'
-"   if exists("g:ctrl_user_command")
-"     unlet g:ctrlp_user_command
-"   endif
-"   let g:ctrlp_switch_buffer = 0
-"   let g:ctrlp_show_hidden = 1
-"   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,*.d,*.svn*,*.o,*.lst,*.scs,*.sts,*.peg
 "}}}
 
 "FZF

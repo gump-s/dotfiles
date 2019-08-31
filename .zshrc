@@ -41,7 +41,7 @@ ENABLE_CORRECTION="false"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -55,7 +55,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages vi-mode systemd compinit)
+plugins=(colored-man-pages vi-mode systemd)
 
 # User configuration
 export KEYTIMEOUT=1
@@ -89,7 +89,7 @@ alias lla="ls -la"
 alias hibernate="sudo systemctl hibernate"
 alias suspend="sudo systemctl suspend"
 alias steam-wine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
-alias autoremove='sudo pacman -Rcns $(pacman -Qdtq)'
+alias autoremove='pacman -Rcns $(pacman -Qdtq)'
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
