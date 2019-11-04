@@ -89,7 +89,7 @@ alias lla="ls -la"
 alias hibernate="sudo systemctl hibernate"
 alias suspend="sudo systemctl suspend"
 alias steam-wine='wine ~/.wine/drive_c/Program\ Files\ \(x86\)/Steam/Steam.exe >/dev/null 2>&1 &'
-alias autoremove='pacman -Rcns $(pacman -Qdtq)'
+alias autoremove='sudo pacman -Rcns $(pacman -Qdtq)'
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
