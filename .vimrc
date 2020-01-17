@@ -16,23 +16,26 @@ filetype off
    " Keep Plugin commands between vundle#begin/end.
    " plugin on GitHub repo
    Plugin 'tpope/vim-fugitive'
+   Plugin 'tpope/vim-obsession'
+   Plugin 'dhruvasagar/vim-prosession'
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
    Plugin 'vimwiki'
-   "Plugin 'prabirshrestha/asyncomplete.vim'
-   "Plugin 'prabirshrestha/asyncomplete-tags.vim'
-   "Plugin 'prabirshrestha/asyncomplete-buffer.vim'
-   "Plugin 'yami-beta/asyncomplete-omni.vim'
    Plugin 'scrooloose/nerdtree'
    Plugin 'plasticboy/vim-markdown'
    Plugin 'majutsushi/tagbar'
    Plugin 'vim-scripts/DoxygenToolkit.vim'
    Plugin 'godlygeek/tabular'
+   Plugin 'junegunn/fzf'
    Plugin 'junegunn/fzf.vim'
    Plugin 'cscope_macros.vim'
    Plugin 'nfvs/vim-perforce'
    Plugin 'dhruvasagar/vim-table-mode'
+   Plugin 'kana/vim-fakeclip'
+   Plugin 'lyuts/vim-rtags'
+   Plugin 'vim/killersheep'
+   Plugin 'ycm-core/YouCompleteMe'
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
    "To ignore plugin indent changes, instead use:
@@ -82,6 +85,9 @@ filetype off
 
    "timeout option
    set ttimeoutlen=0
+
+   "show normal mode command keystrokes
+   set showcmd
 "}}}
 
 "Misc Key Remaps
@@ -123,8 +129,8 @@ filetype off
    "color vividchalk
    set number
    set relativenumber
-   set t_Co=256
-   set t_ut=
+   "set t_Co=256
+   "set t_ut=
 "}}}
 
 "Set tab formatting
@@ -135,31 +141,12 @@ filetype off
    set expandtab
 "}}}
 
-
-"CtrlP Options
-"{{{
-"   let g:ctrlp_working_path_mode = 0
-"   let g:ctrlp_map = '<c-p>'
-"   let g:ctrlp_cmd = 'CtrlP'
-"   if exists("g:ctrl_user_command")
-"     unlet g:ctrlp_user_command
-"   endif
-"   let g:ctrlp_switch_buffer = 0
-"   let g:ctrlp_show_hidden = 1
-"   let g:ctrlp_follow_symlinks = 1
-"   let g:ctrlp_max_files = 100000
-"   let g:ctrlp_max_depth = 40
-"   nnoremap <leader>pt :CtrlPTag<CR>
-"   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*.bak,
-"                    \*.svn*,*.o,*.lst,*.scs,*.sts,*.peg,*.pbi,*.pdf,*.cout,
-"                    \*.xcl
-"}}}
-"
 "FZF options
 "{{{
-    nnoremap <c-p> :FZF<CR>
+    "nnoremap <c-p> :FZF!<CR>
+    nnoremap <c-p> :Files<CR>
     nnoremap <leader>p :Buffers<CR>
-    let g:fzf_buffers_jump=1
+    "let g:fzf_buffers_jump=1
 "}}}
 
 "NERDtree Options
@@ -197,10 +184,12 @@ filetype off
 "}}}
 
 " edit vimrc/zshrc/bashrc and load vimrc bindings
-nnoremap <leader>ev :e $MYVIMRC<CR>
-nnoremap <leader>ez :e ~/.zshrc<CR>
-nnoremap <leader>eb :e ~/.bashrc<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
+"{{{
+    nnoremap <leader>ev :e $MYVIMRC<CR>
+    nnoremap <leader>ez :e ~/.zshrc<CR>
+    nnoremap <leader>eb :e ~/.bashrc<CR>
+    nnoremap <leader>sv :source $MYVIMRC<CR>
+"}}}
 
 "Delete Trailing Spaces
 nnoremap <leader>ds :%s/\s\+$//<CR>
@@ -312,4 +301,15 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
     let g:table_mode_toggle_map = 'm'
     let g:table_mode_corner_corner='+'
     let table_mode_header_fillchar='='
+"}}}
+
+" fakeclip -> copy into tmux buffer "&
+"{{{
+    nmap <leader>y "&
+"}}}
+
+" ycm settigns"
+"{{{
+    let g:ycm_confirm_extra_conf = 0
+    let g:ycm_show_diagnostics_ui = 0
 "}}}

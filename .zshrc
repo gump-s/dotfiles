@@ -91,6 +91,7 @@ export EDITOR='vim'
 alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lla="ls -la"
+#alias ag='ag --path-to-agignore ~/.agignore --silent '
 
 ZSH_CACHE_DIR=$HOME/.oh-my-zsh-cache
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
@@ -117,6 +118,8 @@ export P4CONFIG=.p4config
 #fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# aliases
+[ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
 
 #cd ~
 
