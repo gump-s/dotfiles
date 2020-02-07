@@ -1,6 +1,7 @@
 set nocompatible
 filetype off
 
+let g:ale_completion_enabled = 1
 "Vundule Setup
 "{{{
    if !isdirectory(expand("~/.vim/bundle/Vundle.vim/.git"))
@@ -36,6 +37,8 @@ filetype off
    Plugin 'lyuts/vim-rtags'
    Plugin 'vim/killersheep'
    Plugin 'ycm-core/YouCompleteMe'
+   "Plugin 'neoclide/coc.nvim'
+   Plugin 'w0rp/ale'
    " All of your Plugins must be added before the following line
    call vundle#end()            " required
    "To ignore plugin indent changes, instead use:
@@ -241,47 +244,6 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
     nnoremap <leader>tb :TagbarToggle<CR>
 "}}}
 
-"Completion Settings
-"{{{
-"   noremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-"   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-"   let g:asyncomplete_auto_popup = 0
-"   let g:asyncomplete_remove_duplicates = 1
-"
-"   function! s:check_back_space() abort
-"       let col = col('.') - 1
-"           return !col || getline('.')[col - 1]  =~ '\s'
-"   endfunction
-"
-"   inoremap <silent><expr> <TAB>
-"     \ pumvisible() ? "\<C-n>" :
-"     \ <SID>check_back_space() ? "\<TAB>" :
-"     \ asyncomplete#force_refresh()
-"   inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#tags#get_source_options({
-"        \ 'name': 'tags',
-"        \ 'whitelist': ['c'],
-"        \ 'completor': function('asyncomplete#sources#tags#completor'),
-"        \ 'config': {
-"        \   'max_file_size': -1,
-"        \   },
-"        \ }))
-"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-"        \ 'name': 'omni',
-"        \ 'whitelist': ['*'],
-"        \ 'completor': function('asyncomplete#sources#omni#completor')
-"        \  }))
-"   au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
-"        \ 'name': 'buffer',
-"        \ 'whitelist': ['*'],
-"        \ 'blacklist': ['go'],
-"        \ 'completor': function('asyncomplete#sources#buffer#completor'),
-"        \ }))
-"}}}
-
-
 "Filetype settings
 "{{{
     au BufRead,BufNewFile *.CPP set filetype=cpp
@@ -313,3 +275,9 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
     let g:ycm_confirm_extra_conf = 0
     let g:ycm_show_diagnostics_ui = 0
 "}}}
+
+" ale "
+"{{{
+    "let g:ale_linters = {'c': ['clangtidy'], 'cpp': ['clangtidy']}
+"}}}
+

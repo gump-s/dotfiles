@@ -15,7 +15,7 @@
 [[ "$-" != *i* ]] && return
 
 export DISPLAY=:0
-#export TERM=xterm-256color
+export TERM=xterm-256color
 #export TERM=rxvt-unicode
 #export COLORTERM=rxvt-unicode
 export VISUAL="vim"
