@@ -17,8 +17,9 @@ let g:ale_completion_enabled = 1
    " Keep Plugin commands between vundle#begin/end.
    " plugin on GitHub repo
    Plugin 'tpope/vim-fugitive'
-   Plugin 'tpope/vim-obsession'
-   Plugin 'dhruvasagar/vim-prosession'
+   "Plugin 'tpope/vim-obsession'
+   Plugin 'tpope/vim-surround'
+   "Plugin 'dhruvasagar/vim-prosession'
    Plugin 'nanotech/jellybeans.vim'
    Plugin 'vim-airline/vim-airline'
    Plugin 'vim-airline/vim-airline-themes'
@@ -37,6 +38,7 @@ let g:ale_completion_enabled = 1
    Plugin 'lyuts/vim-rtags'
    Plugin 'vim/killersheep'
    Plugin 'ycm-core/YouCompleteMe'
+   Plugin 'jaredgorski/spacecamp'
    "Plugin 'neoclide/coc.nvim'
    Plugin 'w0rp/ale'
    " All of your Plugins must be added before the following line
@@ -130,6 +132,7 @@ let g:ale_completion_enabled = 1
    color jellybeans
    "color hybrid
    "color vividchalk
+   "color spacecamp
    set number
    set relativenumber
    "set t_Co=256
@@ -249,7 +252,7 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
     au BufRead,BufNewFile *.CPP set filetype=cpp
 "}}}
 "
-"Doxygen Toolkit settings
+" Doxygen Toolkit settings
 "{{{
 "}}}
 "
@@ -257,7 +260,7 @@ command! FixComments %s/\/\/\(\a\)/\/\/ \1/g
 "{{{
 "}}}
 
-"Table Mode
+" Table Mode
 "{{{
     let g:table_mode_map_prefix = '<leader>a'
     let g:table_mode_toggle_map = 'm'

@@ -3,6 +3,9 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 let g:ale_virtualtext_cursor = 1
+let incsearch = 1
+let inc="noslpit"
+let icm="noslpit"
 
 "set nocompatible
 "set showmatch

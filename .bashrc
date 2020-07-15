@@ -12,7 +12,7 @@
 # User dependent .bashrc file
 
 # If not running interactively, don't do anything
-[[ "$-" != *i* ]] && return
+#[[ "$-" != *i* ]] && return
 
 export DISPLAY=:0
 export TERM=xterm-256color
@@ -20,6 +20,8 @@ export TERM=xterm-256color
 #export COLORTERM=rxvt-unicode
 export VISUAL="vim"
 export PATH=$PATH:~/bin
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Shell Options
 #
