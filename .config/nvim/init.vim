@@ -26,6 +26,7 @@ endif
     Plug 'nfvs/vim-perforce'
     Plug 'vim-scripts/DoxygenToolkit.vim'
     Plug 'vim-scripts/Doxygen.vim'
+    Plug 'kevinoid/vim-jsonc'
 
     call plug#end()
 "}}}
@@ -85,12 +86,13 @@ endif
 "Font, colorscheme, and gui options
 "{{{
     color jellybeans
-    set t_ut=
-    set t_Co=256
+    "set t_ut=
+    "set t_Co=256
     "set background=dark
     "set guifont=Consolas:h10
     set number
     set relativenumber
+    let g:load_doxygen_syntax=1
 "}}}
 
 "Set tab formatting
