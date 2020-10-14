@@ -15,6 +15,7 @@ endif
     Plug 'nanotech/jellybeans.vim'
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    "Plug 'yuki-ycino/fzf-preview.vim', {'branch':'release', 'do':'UpdateRemotePlugins'}
     Plug 'mkitt/tabline.vim'
     Plug 'scrooloose/nerdtree'
     Plug 'majutsushi/tagbar'
@@ -25,8 +26,12 @@ endif
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'nfvs/vim-perforce'
     Plug 'vim-scripts/DoxygenToolkit.vim'
-    Plug 'vim-scripts/Doxygen.vim'
     Plug 'kevinoid/vim-jsonc'
+    Plug 'stsewd/sphinx.nvim', {'do': ':UpdateRemotePlugins'}
+    "Plug 'sheerun/vim-polyglot'
+    Plug 'chuling/ci_dark'
+    Plug 'luochen1990/rainbow'
+    Plug 'NLKNguyen/papercolor-theme'
 
     call plug#end()
 "}}}
@@ -42,8 +47,6 @@ endif
     syntax enable
 
     "Change Directory for Swap File
-    "set backupdir=./.backup/,.,~/tmp
-    "set directory=.,./.backup/,~/tmp
     set nobackup
     set nowritebackup
 
@@ -85,14 +88,29 @@ endif
 
 "Font, colorscheme, and gui options
 "{{{
-    color jellybeans
     "set t_ut=
     "set t_Co=256
-    "set background=dark
     "set guifont=Consolas:h10
+    color jellybeans
+    "color PaperColor
+    set background=dark
     set number
     set relativenumber
     let g:load_doxygen_syntax=1
+"}}}
+
+" PaperColor settings
+"{{{
+"let g:PaperColor_Theme_Options = {
+"            \    'language': {
+"            \        'cpp': {
+"            \            'highlight_standard_library':1
+"            \        },
+"            \        'c': {
+"            \            'highlight_builtins':1
+"            \        }
+"            \   }
+"            \}
 "}}}
 
 "Set tab formatting
@@ -256,7 +274,7 @@ command! Ctags :!ctags --extra=+q -R
     endfunction
 
     " Highlight the symbol and its references when holding the cursor.
-    autocmd CursorHold * silent call CocActionAsync('highlight')
+    "autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " Symbol renaming.
     nmap <leader>rn <Plug>(coc-rename)
