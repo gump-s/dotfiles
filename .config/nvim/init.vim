@@ -28,8 +28,8 @@ endif
     Plug 'vim-scripts/DoxygenToolkit.vim'
     Plug 'kevinoid/vim-jsonc'
     Plug 'stsewd/sphinx.nvim', {'do': ':UpdateRemotePlugins'}
-    "Plug 'sheerun/vim-polyglot'
-    Plug 'luochen1990/rainbow'
+    Plug 'tpope/vim-surround'
+    Plug 'joe-skb7/cscope-maps'
 
     call plug#end()
 "}}}
@@ -58,7 +58,7 @@ endif
     set backspace=2
 
     "Clipboard
-    set clipboard=unnamed
+    set clipboard=unnamedplus
 "}}}
 
 "Misc Key Remaps
