@@ -18,7 +18,7 @@ export DISPLAY=:0
 export TERM=xterm-256color
 #export TERM=rxvt-unicode
 #export COLORTERM=rxvt-unicode
-export VISUAL="vim"
+export VISUAL="nvim"
 export PATH=$PATH:~/bin
 GPG_TTY=$(tty)
 export GPG_TTY
@@ -92,3 +92,7 @@ if [ -t 1 ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

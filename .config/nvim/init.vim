@@ -1,6 +1,3 @@
-if &compatible
-    set nocompatible               " Be iMproved
-endif
 
 " Plugins
 "{{{
@@ -12,19 +9,12 @@ endif
 "endif
 
 call plug#begin(stdpath('data') . '/plugged')
-Plug 'nanotech/jellybeans.vim'
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'mkitt/tabline.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'nfvs/vim-perforce'
-Plug 'vim-scripts/DoxygenToolkit.vim'
-Plug 'kevinoid/vim-jsonc'
 Plug 'tpope/vim-surround'
 Plug 'joe-skb7/cscope-maps'
 Plug 'neovim/nvim-lspconfig'
@@ -32,12 +22,21 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'nvim-lua/lsp-status.nvim'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'BurntSushi/ripgrep'
+Plug 'Valloric/ListToggle'
+Plug 'danymat/neogen'
+Plug 'rktjmp/lush.nvim'
+Plug 'metalelf0/jellybeans-nvim'
+Plug 'kabouzeid/nvim-jellybeans'
+Plug 'rafamadriz/neon'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 "}}}
@@ -94,15 +93,8 @@ set virtualedit=block
 
 "Font, colorscheme, and gui options
 "{{{
-"set t_ut=
-"set t_Co=256
-"set guifont=Consolas:h10
-color jellybeans
-"color PaperColor
-set background=dark
 set number
 set relativenumber
-let g:load_doxygen_syntax=1
 "}}}
 
 "Set tab formatting
@@ -115,11 +107,6 @@ set list
 set listchars=tab:>-
 "}}}
 "
-"FZF
-"{{{
-"nnoremap <c-p> :FZF<CR>
-"nnoremap <leader>p :Buffers<CR>
-"}}}
 
 "Setup the Ctags workspace
 set tags=./tags;
@@ -169,44 +156,10 @@ nnoremap <leader>n :call NumberToggle()<cr>
 "Update the tags file
 command! Ctags :!ctags --extra=+q -R
 
-"Airline settings
-"{{{
-let g:airline#extensions#whitespace#checks = ['trailing', 'long']
-" configure the minimum number of tabs needed to show the tabline.
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_min_count = 2
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline_powerline_fonts = 1
-set laststatus=2
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+"listToggle
+let g:lt_location_list_toggle_map = '<leader>ll'
+let g:lt_quickfix_list_toggle_map = '<leader>qf'
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-"
-" " airline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-"}}}
-"
 "tagbar
 "{{{
 nmap <leader>tb :TagbarToggle<CR>
@@ -222,7 +175,7 @@ lua << EOF
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
@@ -239,7 +192,7 @@ vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration(
 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+--vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -247,25 +200,25 @@ vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+--vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'jsonls', 'esbonio', 'bashls' }
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'jsonls', 'bashls', 'esbonio' }
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
         on_attach = on_attach,
         flags = {
             -- This will be the default in neovim 0.7+
             debounce_text_changes = 150,
-            }
+        }
     }
 end
 
 require'nvim-treesitter.configs'.setup {
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = "maintained",
+    ensure_installed = "all",
 
     -- Install languages synchronously (only applied to `ensure_installed`)
     sync_install = true,
@@ -291,7 +244,7 @@ require'nvim-treesitter.configs'.setup {
         },
 
     indent = {
-        enable = true
+        enable = false
     }
 }
 
@@ -350,12 +303,15 @@ require('telescope').setup{
   defaults = {
     -- Default configuration for telescope goes here:
     -- config_key = value,
+    file_ignore_patterns = {"^objs/.*", "compile_commands.json" },
     mappings = {
       i = {
         -- map actions.which_key to <C-h> (default: <C-/>)
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-        ["<C-h>"] = "which_key"
+        ["<C-h>"] = "which_key",
+        ["<C-j>"] = "move_selection_next",
+        ["<C-k>"] = "move_selection_previous"
       }
     }
   },
@@ -386,7 +342,25 @@ require('telescope').setup{
 
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
---require('telescope').load_extension('fzf')
+require('telescope').load_extension('fzf')
+
+-- neogen setup
+require('neogen').setup{}
+local opts = { noremap = true, silent = true }
+vim.api.nvim_set_keymap("n", "<Leader>dx", ":lua require('neogen').generate()<CR>", opts)
+vim.api.nvim_set_keymap('n', '<leader>h', ":ClangdSwitchSourceHeader<CR>", opts)
+
+ -- lualine
+require('lualine').setup {
+  options = {
+    -- ... your lualine config
+    theme = 'neon'
+    -- ... your lualine config
+  }
+}
+
+vim.g.neon_style="dark"
+vim.cmd[[colorscheme neon]]
 
 EOF
 
@@ -396,5 +370,8 @@ nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <Leader>pp :lua require'telescope.builtin'.planets{}
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').treesitter()<cr>
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
+augroup END

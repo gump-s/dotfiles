@@ -64,7 +64,7 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages vi-mode)
+plugins=(git colored-man-pages vi-mode fzf)
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -80,7 +80,7 @@ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
+export EDITOR='nvim'
 # else
 #   export EDITOR='mvim'
 # fi
@@ -97,8 +97,8 @@ export EDITOR='vim'
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="mate ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias lla="ls -la"
 #alias ag='ag --path-to-agignore ~/.agignore --silent '
 
@@ -125,7 +125,7 @@ source $ZSH/oh-my-zsh.sh
 export P4CONFIG=.p4config
 
 #fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # aliases
 [ -f ~/.zsh_aliases ] && source ~/.zsh_aliases
