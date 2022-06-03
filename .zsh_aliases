@@ -1,0 +1,3 @@
+alias ag='ag --path-to-ignore ~/.agignore --silent'
+alias tags='ctags -R --c++-kinds=+p && cscope -Rbq'
+
