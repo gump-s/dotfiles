@@ -18,10 +18,11 @@ Plug 'nfvs/vim-perforce'
 Plug 'tpope/vim-surround'
 Plug 'joe-skb7/cscope-maps'
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-buffer'
 Plug 'nvim-lua/lsp-status.nvim'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'L3MON4D3/LuaSnip'
@@ -37,6 +38,15 @@ Plug 'kabouzeid/nvim-jellybeans'
 Plug 'rafamadriz/neon'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-neorg/neorg'
+Plug 'nvim-neorg/neorg-telescope'
+Plug 'mcauley-penney/tidy.nvim'
+Plug 'mfussenegger/nvim-dap'
+" treesitter last
+Plug 'nvim-treesitter/nvim-tree-docs'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 call plug#end()
 "}}}
@@ -65,7 +75,23 @@ let mapleader="\<space>"
 set backspace=2
 
 "Clipboard
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
+
+"let g:clipboard = {
+"      \   'name': 'myClipboard',
+"      \   'copy': {
+"      \      '+': ['xclip -se c', 'load-buffer', '-'],
+"      \      '*': ['xclip -se c', 'load-buffer', '-'],
+"      \    },
+"      \   'paste': {
+"      \      '+': ['xclip -se c', 'save-buffer', '-'],
+"      \      '*': ['xclip -se c', 'save-buffer', '-'],
+"      \   },
+"      \   'cache_enabled': 1,
+"      \ }
+
+"Mouse
+set mouse=nv
 "}}}
 
 "Misc Key Remaps
@@ -89,6 +115,13 @@ set noeb vb t_vb=
 
 "Virtual Edit Block
 set virtualedit=block
+
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+" replace currently selected text with default register
+" without yanking it
+vnoremap p "_dP
 "}}}
 
 "Font, colorscheme, and gui options
@@ -150,7 +183,7 @@ function! NumberToggle()
     endif
 endfunc
 
-nnoremap <leader>n :call NumberToggle()<cr>
+"nnoremap <leader>n :call NumberToggle()<cr>
 "}}}
 
 "Update the tags file
@@ -169,6 +202,11 @@ nmap <leader>tb :TagbarToggle<CR>
 "{{{
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize=50
+"}}}
+
+" perforce
+"{{{
+let g:perforce_open_on_change=1
 "}}}
 
 lua << EOF
@@ -199,7 +237,7 @@ vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspec
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+--vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 --vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
@@ -241,11 +279,16 @@ require'nvim-treesitter.configs'.setup {
         -- Using this option may slow down your editor, and you may see some duplicate highlights.
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
-        },
+    },
 
     indent = {
         enable = false
     }
+
+    -- docs
+    --tree_docs = {
+    --    enable = true
+    --}
 }
 
 -- Add additional capabilities supported by nvim-cmp
@@ -272,7 +315,7 @@ cmp.setup {
     ['<C-e>'] = cmp.mapping.close(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ['<Tab>'] = function(fallback)
       if cmp.visible() then
@@ -296,7 +339,14 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'neorg' },
   },
+
+  cmp.setup.cmdline(':', {
+      sources = {
+          { name = 'cmdline' }
+          }
+      })
 }
 
 require('telescope').setup{
@@ -313,7 +363,8 @@ require('telescope').setup{
         ["<C-j>"] = "move_selection_next",
         ["<C-k>"] = "move_selection_previous"
       }
-    }
+    },
+    path_display = {"truncate"}
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -348,21 +399,105 @@ require('telescope').load_extension('fzf')
 require('neogen').setup{}
 local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<Leader>dx", ":lua require('neogen').generate()<CR>", opts)
+
+-- remaps
 vim.api.nvim_set_keymap('n', '<leader>h', ":ClangdSwitchSourceHeader<CR>", opts)
 
- -- lualine
+-- lualine
+
 require('lualine').setup {
   options = {
     -- ... your lualine config
-    theme = 'neon'
-    -- ... your lualine config
+    theme = 'neon',
+    path = 1,
+    --sections = {
+    --    lualine_a = {
+    --        "vim.api.nvim_buf_line_count(0)"
+    --    }
+    --}
   }
 }
 
+-- colorscheme
 vim.g.neon_style="dark"
 vim.cmd[[colorscheme neon]]
 
+-- neorg
+require('neorg').setup {
+    load = {
+        ["core.defaults"] = {},
+        ["core.norg.dirman"] = {
+            config = {
+                workspaces = {
+                    todo = "~/notes/todo",
+                    notes = "~/notes"
+                },
+                autochdir = false
+            }
+        },
+        ["core.norg.concealer"] = {},
+        ["core.norg.completion"] = {
+            config = {
+                engine = "nvim-cmp",
+            },
+        },
+        ["core.integrations.telescope"] = {},
+        ["core.gtd.base"] = {
+            config = {
+                workspace = "todo"
+            },
+        }
+    }
+}
+vim.opt.listchars:append("trail:-")
+vim.api.nvim_set_keymap('n', '<leader>nt', ":Neorg workspace todo<CR>", opts)
+
+-- tidy
+require("tidy").setup()
+
+-- dap
+local dap = require('dap')
+local dap = require('dap')
+dap.adapters.lldb = {
+  type = 'executable',
+  command = '/usr/bin/lldb-vscode-11', -- adjust as needed, must be absolute path
+  name = 'lldb'
+}
+
+dap.configurations.cpp = {
+  {
+    name = 'Launch',
+    type = 'lldb',
+    request = 'launch',
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    -- 💀
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    -- runInTerminal = false,
+  },
+}
+
+-- If you want to use this for Rust and C, add something like this:
+dap.configurations.c = dap.configurations.cpp
+dap.configurations.rust = dap.configurations.cpp
+
+
 EOF
+
 
 " telescope
 " Using Lua functions
@@ -370,7 +505,9 @@ nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').treesitter()<cr>
+nnoremap <leader>ft <cmd>lua require('telescope.builtin').treesitter()<cr>
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
+nnoremap gr <cmd>lua require('telescope.builtin').lsp_references()<cr>
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }

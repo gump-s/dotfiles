@@ -13,7 +13,7 @@ export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 # Path to your oh-my-zsh installation.
 #ZSH=/usr/share/oh-my-zsh/
 export ZSH=$HOME/.oh-my-zsh
-export DISPLAY=:0
+#export DISPLAY=:0
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
