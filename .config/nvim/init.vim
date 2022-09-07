@@ -14,8 +14,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
-Plug 'nfvs/vim-perforce'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+Plug 'nfvs/vim-perforce'
 Plug 'joe-skb7/cscope-maps'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
@@ -29,6 +30,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'BurntSushi/ripgrep'
 Plug 'Valloric/ListToggle'
 Plug 'danymat/neogen'
@@ -41,8 +43,10 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nvim-neorg/neorg'
 Plug 'nvim-neorg/neorg-telescope'
-Plug 'mcauley-penney/tidy.nvim'
 Plug 'mfussenegger/nvim-dap'
+Plug 'axelf4/vim-strip-trailing-whitespace'
+Plug 'mhinz/vim-signify'
+Plug 'lukas-reineke/indent-blankline.nvim'
 " treesitter last
 Plug 'nvim-treesitter/nvim-tree-docs'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -132,10 +136,10 @@ set relativenumber
 
 "Set tab formatting
 "{{{
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
+"set tabstop=2
+"set softtabstop=2
+"set shiftwidth=2
+"set expandtab
 set list
 set listchars=tab:>-
 "}}}
@@ -183,7 +187,7 @@ function! NumberToggle()
     endif
 endfunc
 
-"nnoremap <leader>n :call NumberToggle()<cr>
+nnoremap <leader>n :call NumberToggle()<cr>
 "}}}
 
 "Update the tags file
@@ -243,7 +247,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'jsonls', 'bashls', 'esbonio' }
+local servers = { 'pyright', 'tsserver', 'clangd', 'jsonls', 'bashls'}
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
         on_attach = on_attach,
@@ -356,6 +360,7 @@ require('telescope').setup{
     -- Default configuration for telescope goes here:
     -- config_key = value,
     file_ignore_patterns = {"^objs/.*", "compile_commands.json" },
+    theme = "ivy",
     mappings = {
       i = {
         -- map actions.which_key to <C-h> (default: <C-/>)
@@ -389,6 +394,20 @@ require('telescope').setup{
       override_file_sorter = true,     -- override the file sorter
       case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
                                        -- the default case_mode is "smart_case"
+    },
+
+    file_browser = {
+      --theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        }
+      }
     }
   }
 }
@@ -396,6 +415,9 @@ require('telescope').setup{
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
 require('telescope').load_extension('fzf')
+--require('telescope').load_extension('file_browser')
+
+--vim.api.nvim_set_keymap("n", "<C-n>", ":Telescope file_browser<CR>", opts)
 
 -- neogen setup
 require('neogen').setup{}
@@ -454,8 +476,6 @@ require('neorg').setup {
 vim.opt.listchars:append("trail:-")
 vim.api.nvim_set_keymap('n', '<leader>nt', ":Neorg workspace todo<CR>", opts)
 
--- tidy
-require("tidy").setup()
 
 -- dap
 local dap = require('dap')
@@ -497,20 +517,30 @@ dap.configurations.cpp = {
 dap.configurations.c = dap.configurations.cpp
 dap.configurations.rust = dap.configurations.cpp
 
+require("indent_blankline").setup {
+    show_current_context = true,
+    show_current_context_start = true,
+    use_treesitter = true,
+    max_indent_increase = 1,
+    show_first_indent_level = false,
+    show_trailing_blankline_indent = false,
+    use_treesitter_scope = true,
+}
 
 EOF
 
 
 " telescope
 " Using Lua functions
-nnoremap <c-p> <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>j <cmd>lua require('telescope.builtin').find_files({hidden=true})<cr>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>ft <cmd>lua require('telescope.builtin').treesitter()<cr>
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
 nnoremap gr <cmd>lua require('telescope.builtin').lsp_references()<cr>
 augroup highlight_yank
-    autocmd!
-    au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
+autocmd!
+ au TextYankPost * silent! lua vim.highlight.on_yank { higroup='IncSearch', timeout=200 }
 augroup END
+

@@ -7,19 +7,16 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/scripts/work
 export PATH=$PATH:$HOME/scripts
+export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.gem/ruby/2.5.0/bin
 
 # Path to your oh-my-zsh installation.
-#ZSH=/usr/share/oh-my-zsh/
 export ZSH=$HOME/.oh-my-zsh
-#export DISPLAY=:0
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
-#ZSH_THEME="candy"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -64,7 +61,9 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages vi-mode fzf)
+plugins=(zsh-syntax-highlighting git colored-man-pages vi-mode fzf docker)
+#plugins=(git colored-man-pages zsh-vim-mode fzf docker)
+#plugins=(git colored-man-pages fzf docker zsh-syntax-highlighting zsh-system-clipboard zsh-vim-mode)
 
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -127,9 +126,6 @@ fi
 #}
 
 source $ZSH/oh-my-zsh.sh
-
-#perforce settings
-export P4CONFIG=.p4config
 
 #fzf
 #[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
